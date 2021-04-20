@@ -1,0 +1,207 @@
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+✔ ggplot2 3.3.3     ✔ purrr   0.3.4
+✔ tibble  3.0.4     ✔ dplyr   1.0.4
+✔ tidyr   1.1.2     ✔ stringr 1.4.0
+✔ readr   1.4.0     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+randomForest 4.6-14
+Type rfNews() to see new features/changes/bug fixes.
+
+Attaching package: ‘randomForest’
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
+
+The following object is masked from ‘package:ggplot2’:
+
+    margin
+
+Loading required package: lattice
+
+Attaching package: ‘caret’
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+Compare row 46  and column  47 with corr  1 
+  Means:  0.693 vs 0.548 so flagging column 46 
+Compare row 47  and column  48 with corr  1 
+  Means:  0.69 vs 0.545 so flagging column 47 
+Compare row 48  and column  38 with corr  1 
+  Means:  0.687 vs 0.542 so flagging column 48 
+Compare row 38  and column  39 with corr  1 
+  Means:  0.684 vs 0.539 so flagging column 38 
+Compare row 39  and column  40 with corr  1 
+  Means:  0.681 vs 0.536 so flagging column 39 
+Compare row 40  and column  41 with corr  1 
+  Means:  0.678 vs 0.533 so flagging column 40 
+Compare row 41  and column  53 with corr  1 
+  Means:  0.674 vs 0.53 so flagging column 41 
+Compare row 53  and column  54 with corr  1 
+  Means:  0.671 vs 0.527 so flagging column 53 
+Compare row 54  and column  55 with corr  1 
+  Means:  0.667 vs 0.524 so flagging column 54 
+Compare row 55  and column  60 with corr  0.998 
+  Means:  0.663 vs 0.521 so flagging column 55 
+Compare row 60  and column  61 with corr  1 
+  Means:  0.66 vs 0.518 so flagging column 60 
+Compare row 61  and column  75 with corr  1 
+  Means:  0.656 vs 0.514 so flagging column 61 
+Compare row 75  and column  44 with corr  0.998 
+  Means:  0.652 vs 0.511 so flagging column 75 
+Compare row 44  and column  45 with corr  1 
+  Means:  0.648 vs 0.508 so flagging column 44 
+Compare row 45  and column  43 with corr  1 
+  Means:  0.644 vs 0.505 so flagging column 45 
+Compare row 43  and column  50 with corr  0.999 
+  Means:  0.64 vs 0.502 so flagging column 43 
+Compare row 50  and column  51 with corr  1 
+  Means:  0.635 vs 0.498 so flagging column 50 
+Compare row 51  and column  52 with corr  1 
+  Means:  0.631 vs 0.495 so flagging column 51 
+Compare row 52  and column  42 with corr  0.999 
+  Means:  0.627 vs 0.492 so flagging column 52 
+Compare row 42  and column  59 with corr  0.998 
+  Means:  0.622 vs 0.489 so flagging column 42 
+Compare row 59  and column  62 with corr  1 
+  Means:  0.618 vs 0.485 so flagging column 59 
+Compare row 62  and column  57 with corr  0.997 
+  Means:  0.613 vs 0.482 so flagging column 62 
+Compare row 57  and column  56 with corr  0.998 
+  Means:  0.608 vs 0.479 so flagging column 57 
+Compare row 56  and column  78 with corr  0.995 
+  Means:  0.603 vs 0.476 so flagging column 56 
+Compare row 78  and column  85 with corr  0.998 
+  Means:  0.598 vs 0.472 so flagging column 78 
+Compare row 85  and column  83 with corr  1 
+  Means:  0.592 vs 0.469 so flagging column 85 
+Compare row 83  and column  58 with corr  0.994 
+  Means:  0.587 vs 0.466 so flagging column 83 
+Compare row 58  and column  84 with corr  0.993 
+  Means:  0.58 vs 0.463 so flagging column 58 
+Compare row 84  and column  88 with corr  0.999 
+  Means:  0.575 vs 0.46 so flagging column 84 
+Compare row 88  and column  94 with corr  0.999 
+  Means:  0.569 vs 0.456 so flagging column 88 
+Compare row 94  and column  79 with corr  0.996 
+  Means:  0.563 vs 0.453 so flagging column 94 
+Compare row 79  and column  80 with corr  1 
+  Means:  0.556 vs 0.45 so flagging column 79 
+Compare row 80  and column  81 with corr  1 
+  Means:  0.549 vs 0.447 so flagging column 80 
+Compare row 81  and column  92 with corr  0.995 
+  Means:  0.543 vs 0.444 so flagging column 81 
+Compare row 92  and column  49 with corr  0.964 
+  Means:  0.536 vs 0.441 so flagging column 92 
+Compare row 49  and column  82 with corr  0.987 
+  Means:  0.528 vs 0.439 so flagging column 49 
+Compare row 82  and column  66 with corr  0.88 
+  Means:  0.513 vs 0.436 so flagging column 82 
+Compare row 66  and column  67 with corr  1 
+  Means:  0.514 vs 0.434 so flagging column 66 
+Compare row 67  and column  64 with corr  1 
+  Means:  0.506 vs 0.431 so flagging column 67 
+Compare row 64  and column  65 with corr  1 
+  Means:  0.498 vs 0.429 so flagging column 64 
+Compare row 65  and column  68 with corr  1 
+  Means:  0.49 vs 0.427 so flagging column 65 
+Compare row 68  and column  70 with corr  1 
+  Means:  0.481 vs 0.425 so flagging column 68 
+Compare row 70  and column  71 with corr  0.999 
+  Means:  0.473 vs 0.423 so flagging column 70 
+Compare row 71  and column  72 with corr  1 
+  Means:  0.464 vs 0.421 so flagging column 71 
+Compare row 72  and column  73 with corr  1 
+  Means:  0.454 vs 0.42 so flagging column 72 
+Compare row 73  and column  74 with corr  1 
+  Means:  0.444 vs 0.419 so flagging column 73 
+Compare row 74  and column  69 with corr  0.96 
+  Means:  0.434 vs 0.419 so flagging column 74 
+Compare row 69  and column  63 with corr  0.803 
+  Means:  0.397 vs 0.419 so flagging column 63 
+Compare row 96  and column  97 with corr  1 
+  Means:  0.353 vs 0.421 so flagging column 97 
+Compare row 96  and column  95 with corr  1 
+  Means:  0.34 vs 0.424 so flagging column 95 
+Compare row 32  and column  33 with corr  1 
+  Means:  0.54 vs 0.424 so flagging column 32 
+Compare row 33  and column  25 with corr  0.855 
+  Means:  0.531 vs 0.419 so flagging column 33 
+Compare row 25  and column  22 with corr  0.906 
+  Means:  0.517 vs 0.414 so flagging column 25 
+Compare row 7  and column  22 with corr  0.83 
+  Means:  0.483 vs 0.41 so flagging column 7 
+Compare row 22  and column  12 with corr  1 
+  Means:  0.522 vs 0.407 so flagging column 22 
+Compare row 12  and column  15 with corr  1 
+  Means:  0.511 vs 0.402 so flagging column 12 
+Compare row 15  and column  16 with corr  1 
+  Means:  0.501 vs 0.398 so flagging column 15 
+Compare row 16  and column  17 with corr  1 
+  Means:  0.489 vs 0.393 so flagging column 16 
+Compare row 17  and column  19 with corr  1 
+  Means:  0.477 vs 0.389 so flagging column 17 
+Compare row 19  and column  20 with corr  1 
+  Means:  0.465 vs 0.385 so flagging column 19 
+Compare row 20  and column  23 with corr  0.999 
+  Means:  0.452 vs 0.381 so flagging column 20 
+Compare row 23  and column  10 with corr  0.987 
+  Means:  0.437 vs 0.378 so flagging column 23 
+Compare row 10  and column  11 with corr  1 
+  Means:  0.417 vs 0.376 so flagging column 10 
+Compare row 11  and column  13 with corr  0.865 
+  Means:  0.401 vs 0.374 so flagging column 11 
+Compare row 76  and column  77 with corr  1 
+  Means:  0.453 vs 0.371 so flagging column 76 
+Compare row 77  and column  34 with corr  0.995 
+  Means:  0.438 vs 0.367 so flagging column 77 
+Compare row 34  and column  35 with corr  1 
+  Means:  0.422 vs 0.363 so flagging column 34 
+Compare row 35  and column  36 with corr  1 
+  Means:  0.405 vs 0.36 so flagging column 35 
+Compare row 36  and column  37 with corr  1 
+  Means:  0.387 vs 0.358 so flagging column 36 
+Compare row 37  and column  89 with corr  0.991 
+  Means:  0.368 vs 0.357 so flagging column 37 
+Compare row 89  and column  90 with corr  1 
+  Means:  0.348 vs 0.357 so flagging column 90 
+Compare row 89  and column  91 with corr  1 
+  Means:  0.326 vs 0.358 so flagging column 91 
+Compare row 89  and column  93 with corr  1 
+  Means:  0.303 vs 0.361 so flagging column 93 
+Compare row 26  and column  30 with corr  0.998 
+  Means:  0.528 vs 0.357 so flagging column 26 
+Compare row 30  and column  28 with corr  0.996 
+  Means:  0.51 vs 0.345 so flagging column 30 
+Compare row 28  and column  29 with corr  1 
+  Means:  0.492 vs 0.333 so flagging column 28 
+Compare row 29  and column  27 with corr  0.998 
+  Means:  0.471 vs 0.32 so flagging column 29 
+Compare row 27  and column  18 with corr  0.881 
+  Means:  0.448 vs 0.308 so flagging column 27 
+Compare row 18  and column  21 with corr  1 
+  Means:  0.44 vs 0.296 so flagging column 18 
+Compare row 21  and column  14 with corr  0.996 
+  Means:  0.415 vs 0.284 so flagging column 21 
+Compare row 14  and column  8 with corr  0.983 
+  Means:  0.385 vs 0.273 so flagging column 14 
+Compare row 8  and column  9 with corr  1 
+  Means:  0.35 vs 0.263 so flagging column 8 
+Compare row 9  and column  6 with corr  0.99 
+  Means:  0.316 vs 0.256 so flagging column 9 
+Compare row 31  and column  4 with corr  0.996 
+  Means:  0.287 vs 0.25 so flagging column 31 
+Compare row 4  and column  5 with corr  0.998 
+  Means:  0.244 vs 0.248 so flagging column 5 
+Compare row 101  and column  102 with corr  1 
+  Means:  0.328 vs 0.244 so flagging column 101 
+Compare row 102  and column  100 with corr  0.999 
+  Means:  0.283 vs 0.235 so flagging column 102 
+Compare row 99  and column  98 with corr  0.999 
+  Means:  0.245 vs 0.231 so flagging column 99 
+All correlations <= 0.8 
+[1] 0

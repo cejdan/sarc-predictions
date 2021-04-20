@@ -1,0 +1,3792 @@
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+✔ ggplot2 3.3.3     ✔ purrr   0.3.4
+✔ tibble  3.0.4     ✔ dplyr   1.0.4
+✔ tidyr   1.1.2     ✔ stringr 1.4.0
+✔ readr   1.4.0     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+randomForest 4.6-14
+Type rfNews() to see new features/changes/bug fixes.
+
+Attaching package: ‘randomForest’
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
+
+The following object is masked from ‘package:ggplot2’:
+
+    margin
+
+Loading required package: lattice
+
+Attaching package: ‘caret’
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Compare row 3  and column  4 with corr  1 
+  Means:  0.83 vs 0.691 so flagging column 3 
+Compare row 4  and column  5 with corr  1 
+  Means:  0.813 vs 0.664 so flagging column 4 
+Compare row 5  and column  6 with corr  1 
+  Means:  0.793 vs 0.631 so flagging column 5 
+Compare row 6  and column  7 with corr  1 
+  Means:  0.767 vs 0.592 so flagging column 6 
+Compare row 7  and column  8 with corr  1 
+  Means:  0.733 vs 0.543 so flagging column 7 
+Compare row 8  and column  9 with corr  1 
+  Means:  0.689 vs 0.482 so flagging column 8 
+Compare row 9  and column  10 with corr  0.998 
+  Means:  0.626 vs 0.403 so flagging column 9 
+Compare row 10  and column  11 with corr  0.995 
+  Means:  0.534 vs 0.3 so flagging column 10 
+Compare row 11  and column  12 with corr  0.998 
+  Means:  0.381 vs 0.17 so flagging column 11 
+All correlations <= 0.95 
+[1] 0
+# weights:  5
+initial  value 1570.557257 
+iter  10 value 1517.873156
+iter  20 value 1517.832989
+final  value 1517.832868 
+converged
+# weights:  13
+initial  value 1765.728399 
+final  value 1542.554059 
+converged
+# weights:  21
+initial  value 1730.651845 
+iter  10 value 1517.814294
+final  value 1517.618651 
+converged
+# weights:  5
+initial  value 1591.859555 
+iter  10 value 1518.541197
+iter  20 value 1518.072038
+iter  30 value 1517.947119
+final  value 1517.944985 
+converged
+# weights:  13
+initial  value 1552.374817 
+iter  10 value 1518.860285
+iter  20 value 1517.758470
+final  value 1517.749256 
+converged
+# weights:  21
+initial  value 1554.457542 
+iter  10 value 1519.953546
+iter  20 value 1517.803278
+iter  30 value 1517.775192
+iter  40 value 1517.767099
+final  value 1517.764324 
+converged
+# weights:  5
+initial  value 1544.544436 
+iter  10 value 1522.476253
+iter  20 value 1520.144558
+iter  30 value 1518.891942
+final  value 1518.874603 
+converged
+# weights:  13
+initial  value 1565.773834 
+iter  10 value 1519.428337
+iter  20 value 1518.606707
+iter  30 value 1518.558841
+iter  40 value 1518.533941
+final  value 1518.533762 
+converged
+# weights:  21
+initial  value 1721.697128 
+iter  10 value 1520.294629
+iter  20 value 1518.954402
+iter  30 value 1518.723534
+iter  40 value 1518.538808
+final  value 1518.536803 
+converged
+# weights:  5
+initial  value 1578.397346 
+iter  10 value 1524.547734
+iter  20 value 1519.867013
+final  value 1519.783016 
+converged
+# weights:  13
+initial  value 1587.226768 
+iter  10 value 1519.564832
+iter  20 value 1519.341023
+iter  30 value 1519.330255
+iter  40 value 1519.326843
+iter  50 value 1519.324589
+final  value 1519.324060 
+converged
+# weights:  21
+initial  value 1740.756159 
+iter  10 value 1521.416853
+iter  20 value 1519.855783
+iter  30 value 1519.463937
+iter  40 value 1519.408532
+iter  50 value 1519.386715
+iter  60 value 1519.380707
+final  value 1519.380467 
+converged
+# weights:  5
+initial  value 1568.856162 
+iter  10 value 1523.852055
+iter  20 value 1522.036320
+iter  20 value 1522.036307
+iter  20 value 1522.036307
+final  value 1522.036307 
+converged
+# weights:  13
+initial  value 1560.350577 
+iter  10 value 1522.203473
+iter  20 value 1521.577816
+iter  30 value 1521.521985
+iter  40 value 1521.503726
+iter  40 value 1521.503719
+iter  40 value 1521.503719
+final  value 1521.503719 
+converged
+# weights:  21
+initial  value 1645.875105 
+iter  10 value 1522.672430
+iter  20 value 1522.045333
+iter  30 value 1521.684863
+iter  40 value 1521.424364
+iter  50 value 1521.392387
+final  value 1521.389166 
+converged
+# weights:  5
+initial  value 1544.456722 
+iter  10 value 1524.781570
+iter  20 value 1518.505566
+final  value 1518.276944 
+converged
+# weights:  13
+initial  value 1672.674053 
+iter  10 value 1518.769344
+iter  20 value 1518.277014
+iter  20 value 1518.277010
+iter  20 value 1518.277010
+final  value 1518.277010 
+converged
+# weights:  21
+initial  value 2336.421541 
+iter  10 value 1522.878374
+iter  20 value 1518.276994
+final  value 1518.276888 
+converged
+# weights:  5
+initial  value 1542.047008 
+iter  10 value 1518.697151
+iter  20 value 1518.462194
+iter  20 value 1518.462190
+iter  20 value 1518.462190
+final  value 1518.462190 
+converged
+# weights:  13
+initial  value 1542.518690 
+iter  10 value 1520.592670
+iter  20 value 1518.495618
+final  value 1518.450365 
+converged
+# weights:  21
+initial  value 1835.479982 
+iter  10 value 1518.947233
+iter  20 value 1518.526903
+iter  30 value 1518.493107
+iter  40 value 1518.451052
+iter  50 value 1518.433983
+iter  60 value 1518.415748
+iter  70 value 1518.411936
+final  value 1518.411540 
+converged
+# weights:  5
+initial  value 1859.192977 
+iter  10 value 1520.638896
+iter  20 value 1519.707560
+final  value 1519.706992 
+converged
+# weights:  13
+initial  value 1670.803041 
+iter  10 value 1520.178231
+iter  20 value 1519.604311
+iter  30 value 1519.577702
+iter  40 value 1519.548580
+iter  50 value 1519.533441
+iter  60 value 1519.529544
+iter  70 value 1519.500670
+iter  80 value 1519.498505
+final  value 1519.498132 
+converged
+# weights:  21
+initial  value 1591.865252 
+iter  10 value 1523.031346
+iter  20 value 1519.961996
+iter  30 value 1519.739578
+iter  40 value 1519.625114
+iter  50 value 1519.452054
+iter  60 value 1519.429210
+final  value 1519.429036 
+converged
+# weights:  5
+initial  value 1917.934922 
+iter  10 value 1529.893483
+iter  20 value 1520.460732
+iter  20 value 1520.460729
+final  value 1520.460729 
+converged
+# weights:  13
+initial  value 1588.194629 
+iter  10 value 1523.100528
+iter  20 value 1521.830928
+iter  30 value 1520.809393
+iter  40 value 1520.450945
+iter  50 value 1520.448931
+final  value 1520.446372 
+converged
+# weights:  21
+initial  value 1545.651432 
+iter  10 value 1521.038262
+iter  20 value 1520.687315
+iter  30 value 1520.552922
+iter  40 value 1520.543845
+iter  50 value 1520.534126
+iter  60 value 1520.531385
+iter  60 value 1520.531379
+iter  60 value 1520.531378
+final  value 1520.531378 
+converged
+# weights:  5
+initial  value 1544.918502 
+iter  10 value 1524.944955
+iter  20 value 1523.247380
+final  value 1523.246003 
+converged
+# weights:  13
+initial  value 1594.060863 
+iter  10 value 1526.054394
+iter  20 value 1522.811417
+iter  30 value 1522.552363
+iter  40 value 1522.513491
+final  value 1522.513426 
+converged
+# weights:  21
+initial  value 1581.579771 
+iter  10 value 1524.015110
+iter  20 value 1522.922210
+iter  30 value 1522.840483
+iter  40 value 1522.826875
+iter  50 value 1522.818966
+iter  50 value 1522.818958
+iter  50 value 1522.818958
+final  value 1522.818958 
+converged
+# weights:  5
+initial  value 1590.237037 
+iter  10 value 1520.644745
+iter  20 value 1519.234014
+iter  30 value 1517.039310
+iter  40 value 1516.355411
+final  value 1516.354743 
+converged
+# weights:  13
+initial  value 1622.977113 
+iter  10 value 1516.238434
+iter  20 value 1516.110899
+final  value 1516.110730 
+converged
+# weights:  21
+initial  value 1538.935618 
+iter  10 value 1516.463450
+iter  20 value 1516.110994
+final  value 1516.110730 
+converged
+# weights:  5
+initial  value 1610.466084 
+iter  10 value 1516.875800
+iter  20 value 1516.492419
+final  value 1516.485172 
+converged
+# weights:  13
+initial  value 1707.475108 
+iter  10 value 1543.163098
+iter  20 value 1521.647715
+iter  30 value 1516.263825
+iter  40 value 1516.210887
+final  value 1516.209459 
+converged
+# weights:  21
+initial  value 1546.454557 
+iter  10 value 1516.254492
+iter  20 value 1516.219490
+iter  30 value 1516.213851
+iter  40 value 1516.211834
+iter  50 value 1516.209548
+iter  60 value 1516.207369
+final  value 1516.207296 
+converged
+# weights:  5
+initial  value 1547.580927 
+iter  10 value 1521.345184
+iter  20 value 1518.175800
+iter  30 value 1517.443005
+final  value 1517.433901 
+converged
+# weights:  13
+initial  value 1559.385982 
+iter  10 value 1517.498473
+iter  20 value 1517.102782
+iter  30 value 1517.075140
+iter  40 value 1517.053048
+iter  50 value 1517.043501
+iter  60 value 1517.038577
+final  value 1517.038206 
+converged
+# weights:  21
+initial  value 1541.327692 
+iter  10 value 1518.440677
+iter  20 value 1517.281466
+iter  30 value 1517.100815
+iter  40 value 1517.054146
+iter  50 value 1517.024184
+iter  60 value 1517.018540
+iter  70 value 1517.013647
+iter  80 value 1517.010640
+final  value 1517.009656 
+converged
+# weights:  5
+initial  value 1621.567531 
+iter  10 value 1520.299194
+iter  20 value 1518.339060
+final  value 1518.324011 
+converged
+# weights:  13
+initial  value 1657.872705 
+iter  10 value 1519.263544
+iter  20 value 1518.223360
+iter  30 value 1517.995422
+iter  40 value 1517.837162
+iter  50 value 1517.817758
+iter  60 value 1517.790248
+iter  70 value 1517.782440
+final  value 1517.782389 
+converged
+# weights:  21
+initial  value 2272.059452 
+iter  10 value 1521.294709
+iter  20 value 1519.040450
+iter  30 value 1518.432636
+iter  40 value 1518.292712
+iter  50 value 1517.962944
+iter  60 value 1517.820958
+iter  70 value 1517.808876
+iter  80 value 1517.806701
+final  value 1517.806158 
+converged
+# weights:  5
+initial  value 1543.823050 
+iter  10 value 1520.080861
+iter  20 value 1519.762989
+iter  20 value 1519.762989
+iter  20 value 1519.762989
+final  value 1519.762989 
+converged
+# weights:  13
+initial  value 1677.603815 
+iter  10 value 1522.944203
+iter  20 value 1519.788899
+iter  30 value 1519.722900
+iter  40 value 1519.681682
+iter  50 value 1519.671206
+final  value 1519.670652 
+converged
+# weights:  21
+initial  value 1634.105095 
+iter  10 value 1520.260105
+iter  20 value 1519.725172
+final  value 1519.721152 
+converged
+# weights:  5
+initial  value 1542.503707 
+iter  10 value 1519.275583
+iter  20 value 1517.963604
+final  value 1517.956035 
+converged
+# weights:  13
+initial  value 1546.725807 
+iter  10 value 1519.082426
+iter  20 value 1517.777907
+final  value 1517.754991 
+converged
+# weights:  21
+initial  value 1584.023489 
+iter  10 value 1518.298859
+iter  20 value 1517.755045
+final  value 1517.754982 
+converged
+# weights:  5
+initial  value 1542.296597 
+iter  10 value 1518.167126
+iter  20 value 1517.917327
+final  value 1517.915036 
+converged
+# weights:  13
+initial  value 1546.255870 
+iter  10 value 1517.889019
+iter  20 value 1517.853846
+iter  30 value 1517.850688
+final  value 1517.843789 
+converged
+# weights:  21
+initial  value 1731.236645 
+iter  10 value 1542.168643
+iter  20 value 1526.143157
+iter  30 value 1520.052338
+iter  40 value 1517.957961
+iter  50 value 1517.900591
+iter  60 value 1517.882370
+iter  70 value 1517.853273
+iter  80 value 1517.849296
+final  value 1517.848194 
+converged
+# weights:  5
+initial  value 1595.348056 
+iter  10 value 1518.888499
+iter  20 value 1518.734786
+final  value 1518.734766 
+converged
+# weights:  13
+initial  value 1546.074119 
+iter  10 value 1519.156316
+iter  20 value 1518.680101
+iter  30 value 1518.621746
+iter  40 value 1518.580309
+iter  50 value 1518.577957
+iter  60 value 1518.574166
+iter  60 value 1518.574154
+iter  60 value 1518.574154
+final  value 1518.574154 
+converged
+# weights:  21
+initial  value 1545.122625 
+iter  10 value 1520.474065
+iter  20 value 1518.819835
+iter  30 value 1518.591376
+iter  40 value 1518.528724
+iter  50 value 1518.505715
+final  value 1518.504812 
+converged
+# weights:  5
+initial  value 1612.053325 
+iter  10 value 1519.284376
+final  value 1519.178231 
+converged
+# weights:  13
+initial  value 1883.319750 
+iter  10 value 1530.319661
+iter  20 value 1519.857988
+iter  30 value 1519.225771
+iter  40 value 1519.176891
+iter  50 value 1519.162263
+iter  50 value 1519.162254
+iter  50 value 1519.162254
+final  value 1519.162254 
+converged
+# weights:  21
+initial  value 2435.193107 
+iter  10 value 1537.188314
+iter  20 value 1523.607530
+iter  30 value 1519.977725
+iter  40 value 1519.698882
+iter  50 value 1519.581794
+iter  60 value 1519.234473
+iter  70 value 1519.164129
+iter  80 value 1519.161162
+final  value 1519.160865 
+converged
+# weights:  5
+initial  value 1956.305118 
+iter  10 value 1531.863510
+iter  20 value 1521.734335
+final  value 1521.608508 
+converged
+# weights:  13
+initial  value 1602.056944 
+iter  10 value 1523.680854
+iter  20 value 1521.786898
+iter  30 value 1521.380106
+iter  40 value 1521.167339
+iter  50 value 1521.134414
+final  value 1521.132733 
+converged
+# weights:  21
+initial  value 1778.497922 
+iter  10 value 1535.337377
+iter  20 value 1521.552218
+iter  30 value 1521.074293
+iter  40 value 1520.971505
+iter  50 value 1520.847064
+iter  60 value 1520.831954
+final  value 1520.831684 
+converged
+# weights:  5
+initial  value 1577.753183 
+iter  10 value 1519.401734
+iter  20 value 1518.567991
+iter  30 value 1518.553573
+iter  40 value 1518.547578
+final  value 1518.544569 
+converged
+# weights:  13
+initial  value 1581.958224 
+iter  10 value 1518.673505
+iter  20 value 1518.378119
+final  value 1518.376476 
+converged
+# weights:  21
+initial  value 2111.702628 
+iter  10 value 1533.164819
+iter  20 value 1524.048156
+iter  30 value 1521.886790
+iter  40 value 1521.095231
+iter  50 value 1520.602671
+iter  60 value 1519.962116
+iter  70 value 1519.693616
+iter  80 value 1519.611887
+iter  90 value 1519.543826
+iter 100 value 1519.461333
+final  value 1519.461333 
+stopped after 100 iterations
+# weights:  5
+initial  value 1549.452059 
+iter  10 value 1519.871159
+iter  20 value 1518.750547
+final  value 1518.748555 
+converged
+# weights:  13
+initial  value 1620.163661 
+iter  10 value 1518.781124
+iter  20 value 1518.523434
+final  value 1518.511942 
+converged
+# weights:  21
+initial  value 1538.520693 
+iter  10 value 1519.240124
+iter  20 value 1518.528949
+iter  30 value 1518.517145
+iter  40 value 1518.514093
+final  value 1518.513011 
+converged
+# weights:  5
+initial  value 1829.044167 
+iter  10 value 1520.103335
+iter  20 value 1519.635723
+final  value 1519.634291 
+converged
+# weights:  13
+initial  value 1721.868909 
+iter  10 value 1545.755374
+iter  20 value 1519.841219
+iter  30 value 1519.431100
+final  value 1519.423518 
+converged
+# weights:  21
+initial  value 1696.974027 
+iter  10 value 1522.564305
+iter  20 value 1519.989921
+iter  30 value 1519.747761
+iter  40 value 1519.656349
+iter  50 value 1519.497579
+iter  60 value 1519.468239
+iter  70 value 1519.460061
+iter  80 value 1519.454450
+iter  90 value 1519.449872
+iter 100 value 1519.447458
+final  value 1519.447458 
+stopped after 100 iterations
+# weights:  5
+initial  value 1554.090503 
+iter  10 value 1523.070337
+iter  20 value 1520.909205
+final  value 1520.897562 
+converged
+# weights:  13
+initial  value 1626.707410 
+iter  10 value 1521.559489
+iter  20 value 1520.375487
+iter  30 value 1520.313331
+iter  40 value 1520.304325
+final  value 1520.304219 
+converged
+# weights:  21
+initial  value 1616.814271 
+iter  10 value 1527.429349
+iter  20 value 1520.723527
+iter  30 value 1520.362460
+iter  40 value 1520.308075
+iter  50 value 1520.301294
+iter  60 value 1520.294608
+final  value 1520.291210 
+converged
+# weights:  5
+initial  value 1637.230896 
+iter  10 value 1529.447077
+iter  20 value 1523.448760
+iter  30 value 1523.240054
+iter  30 value 1523.240048
+iter  30 value 1523.240048
+final  value 1523.240048 
+converged
+# weights:  13
+initial  value 1606.764991 
+iter  10 value 1526.191544
+iter  20 value 1523.033871
+iter  30 value 1522.651733
+iter  40 value 1522.375030
+final  value 1522.368403 
+converged
+# weights:  21
+initial  value 1536.450286 
+iter  10 value 1523.377783
+iter  20 value 1522.746395
+iter  30 value 1522.581620
+iter  40 value 1522.540608
+iter  50 value 1522.468843
+iter  60 value 1522.453264
+iter  60 value 1522.453251
+iter  60 value 1522.453251
+final  value 1522.453251 
+converged
+# weights:  5
+initial  value 1598.007185 
+iter  10 value 1520.080893
+iter  20 value 1515.754343
+iter  30 value 1515.669972
+iter  40 value 1515.630104
+iter  40 value 1515.630103
+iter  40 value 1515.630103
+final  value 1515.630103 
+converged
+# weights:  13
+initial  value 1580.245951 
+iter  10 value 1515.760179
+iter  20 value 1515.584843
+iter  20 value 1515.584842
+iter  20 value 1515.584842
+final  value 1515.584842 
+converged
+# weights:  21
+initial  value 1735.237517 
+iter  10 value 1515.823613
+iter  20 value 1515.584844
+iter  20 value 1515.584842
+iter  20 value 1515.584842
+final  value 1515.584842 
+converged
+# weights:  5
+initial  value 1535.911163 
+iter  10 value 1520.054497
+iter  20 value 1516.382206
+iter  30 value 1515.882187
+iter  40 value 1515.733151
+final  value 1515.725915 
+converged
+# weights:  13
+initial  value 1557.883228 
+iter  10 value 1515.971650
+iter  20 value 1515.699316
+iter  30 value 1515.692267
+iter  40 value 1515.681170
+final  value 1515.680873 
+converged
+# weights:  21
+initial  value 1802.325585 
+iter  10 value 1519.542289
+iter  20 value 1516.894991
+iter  30 value 1515.790304
+iter  40 value 1515.731095
+iter  50 value 1515.707264
+iter  60 value 1515.688062
+final  value 1515.686675 
+converged
+# weights:  5
+initial  value 1540.294931 
+iter  10 value 1518.244468
+iter  20 value 1516.728310
+final  value 1516.728267 
+converged
+# weights:  13
+initial  value 1855.917224 
+iter  10 value 1543.344172
+iter  20 value 1522.086230
+iter  30 value 1516.935435
+iter  40 value 1516.870766
+iter  50 value 1516.592089
+iter  60 value 1516.503448
+iter  70 value 1516.489050
+final  value 1516.486798 
+converged
+# weights:  21
+initial  value 1612.090609 
+iter  10 value 1525.152989
+iter  20 value 1518.499359
+iter  30 value 1516.937126
+iter  40 value 1516.751397
+iter  50 value 1516.614705
+iter  60 value 1516.577821
+iter  70 value 1516.555868
+iter  80 value 1516.545099
+iter  90 value 1516.541668
+iter 100 value 1516.539080
+final  value 1516.539080 
+stopped after 100 iterations
+# weights:  5
+initial  value 1784.970161 
+iter  10 value 1519.074112
+iter  20 value 1517.337099
+final  value 1517.300877 
+converged
+# weights:  13
+initial  value 1582.698207 
+iter  10 value 1518.471650
+iter  20 value 1517.667718
+iter  30 value 1517.440684
+iter  40 value 1517.282590
+iter  50 value 1517.280875
+final  value 1517.280230 
+converged
+# weights:  21
+initial  value 1711.178272 
+iter  10 value 1518.542368
+iter  20 value 1517.810672
+iter  30 value 1517.348017
+iter  40 value 1517.290071
+final  value 1517.288575 
+converged
+# weights:  5
+initial  value 1635.483682 
+iter  10 value 1523.726037
+iter  20 value 1520.083201
+final  value 1520.076376 
+converged
+# weights:  13
+initial  value 1547.719239 
+iter  10 value 1520.236886
+iter  20 value 1519.374841
+iter  30 value 1519.262022
+iter  40 value 1519.244828
+final  value 1519.244589 
+converged
+# weights:  21
+initial  value 1544.733563 
+iter  10 value 1520.829030
+iter  20 value 1519.554017
+iter  30 value 1519.480058
+iter  40 value 1519.456704
+iter  50 value 1519.449376
+final  value 1519.449058 
+converged
+# weights:  5
+initial  value 1616.870115 
+iter  10 value 1513.730501
+final  value 1513.603879 
+converged
+# weights:  13
+initial  value 1724.797708 
+iter  10 value 1515.551107
+iter  20 value 1513.485277
+final  value 1513.484584 
+converged
+# weights:  21
+initial  value 1643.932043 
+iter  10 value 1513.842482
+iter  20 value 1513.491430
+final  value 1513.484588 
+converged
+# weights:  5
+initial  value 1550.459235 
+iter  10 value 1522.668120
+iter  20 value 1519.255834
+iter  30 value 1514.213871
+iter  40 value 1513.709064
+final  value 1513.704966 
+converged
+# weights:  13
+initial  value 1548.786850 
+iter  10 value 1514.382461
+iter  20 value 1513.686667
+iter  30 value 1513.646736
+iter  40 value 1513.604065
+iter  50 value 1513.596771
+final  value 1513.595778 
+converged
+# weights:  21
+initial  value 2494.987674 
+iter  10 value 1517.755686
+iter  20 value 1514.205090
+iter  30 value 1513.944235
+iter  40 value 1513.824086
+iter  50 value 1513.747175
+iter  60 value 1513.608793
+iter  70 value 1513.591844
+iter  80 value 1513.587570
+final  value 1513.586284 
+converged
+# weights:  5
+initial  value 1605.126436 
+iter  10 value 1517.469285
+iter  20 value 1514.737188
+final  value 1514.736404 
+converged
+# weights:  13
+initial  value 1570.704524 
+iter  10 value 1523.229001
+iter  20 value 1516.261533
+iter  30 value 1514.967646
+iter  40 value 1514.551684
+iter  50 value 1514.505471
+iter  60 value 1514.491453
+iter  70 value 1514.484668
+iter  80 value 1514.482931
+final  value 1514.482834 
+converged
+# weights:  21
+initial  value 1836.582738 
+iter  10 value 1531.119399
+iter  20 value 1515.741277
+iter  30 value 1514.804585
+iter  40 value 1514.689663
+iter  50 value 1514.636409
+iter  60 value 1514.538880
+iter  70 value 1514.521358
+iter  80 value 1514.484936
+iter  90 value 1514.472700
+iter 100 value 1514.460191
+final  value 1514.460191 
+stopped after 100 iterations
+# weights:  5
+initial  value 1602.103501 
+iter  10 value 1517.254871
+iter  20 value 1515.352278
+final  value 1515.351069 
+converged
+# weights:  13
+initial  value 1638.104616 
+iter  10 value 1516.887461
+iter  20 value 1515.495106
+iter  30 value 1515.288271
+iter  40 value 1515.267544
+final  value 1515.267098 
+converged
+# weights:  21
+initial  value 1562.352474 
+iter  10 value 1516.539134
+iter  20 value 1515.368915
+iter  30 value 1515.298969
+iter  40 value 1515.267210
+final  value 1515.264784 
+converged
+# weights:  5
+initial  value 1546.726737 
+iter  10 value 1518.266831
+final  value 1518.187914 
+converged
+# weights:  13
+initial  value 1571.317968 
+iter  10 value 1518.382443
+iter  20 value 1517.783489
+iter  30 value 1517.446861
+iter  40 value 1517.333735
+final  value 1517.329450 
+converged
+# weights:  21
+initial  value 1558.989268 
+iter  10 value 1518.258059
+iter  20 value 1517.516928
+iter  30 value 1517.375194
+iter  40 value 1517.330066
+iter  50 value 1517.322644
+final  value 1517.319874 
+converged
+# weights:  5
+initial  value 1563.805717 
+iter  10 value 1521.729199
+iter  20 value 1520.324846
+final  value 1520.324821 
+converged
+# weights:  13
+initial  value 1683.127659 
+iter  10 value 1520.943664
+iter  20 value 1518.871836
+final  value 1518.869575 
+converged
+# weights:  21
+initial  value 1597.662112 
+iter  10 value 1519.509916
+iter  20 value 1518.869576
+iter  20 value 1518.869574
+iter  20 value 1518.869574
+final  value 1518.869574 
+converged
+# weights:  5
+initial  value 1619.836564 
+iter  10 value 1534.895390
+iter  20 value 1522.349287
+iter  30 value 1520.325517
+iter  40 value 1519.245202
+iter  50 value 1519.072410
+iter  60 value 1519.023802
+iter  60 value 1519.023798
+iter  60 value 1519.023798
+final  value 1519.023798 
+converged
+# weights:  13
+initial  value 1640.653711 
+iter  10 value 1520.091008
+iter  20 value 1519.034411
+iter  30 value 1519.015293
+iter  40 value 1518.972983
+iter  50 value 1518.962758
+final  value 1518.962078 
+converged
+# weights:  21
+initial  value 1576.385410 
+iter  10 value 1519.758590
+iter  20 value 1518.989169
+iter  30 value 1518.974879
+iter  40 value 1518.970182
+iter  50 value 1518.966722
+iter  60 value 1518.962043
+final  value 1518.961665 
+converged
+# weights:  5
+initial  value 1787.028204 
+iter  10 value 1523.731144
+iter  20 value 1519.977318
+final  value 1519.976879 
+converged
+# weights:  13
+initial  value 1581.662412 
+iter  10 value 1520.656910
+iter  20 value 1519.972886
+iter  30 value 1519.802241
+iter  40 value 1519.722426
+final  value 1519.722336 
+converged
+# weights:  21
+initial  value 1748.222938 
+iter  10 value 1521.816647
+iter  20 value 1520.384511
+iter  30 value 1520.166257
+iter  40 value 1519.977091
+iter  50 value 1519.812596
+final  value 1519.784042 
+converged
+# weights:  5
+initial  value 1622.570368 
+iter  10 value 1523.875528
+iter  20 value 1520.531917
+final  value 1520.482089 
+converged
+# weights:  13
+initial  value 1607.077857 
+iter  10 value 1522.690319
+iter  20 value 1520.953406
+iter  30 value 1520.613155
+iter  40 value 1520.480023
+iter  50 value 1520.468774
+final  value 1520.463846 
+converged
+# weights:  21
+initial  value 1932.180092 
+iter  10 value 1531.543121
+iter  20 value 1521.474896
+iter  30 value 1520.941520
+iter  40 value 1520.811688
+iter  50 value 1520.606798
+iter  60 value 1520.568982
+iter  70 value 1520.566273
+final  value 1520.566072 
+converged
+# weights:  5
+initial  value 1543.630171 
+iter  10 value 1523.920518
+iter  20 value 1523.066486
+iter  20 value 1523.066484
+iter  20 value 1523.066484
+final  value 1523.066484 
+converged
+# weights:  13
+initial  value 1646.734189 
+iter  10 value 1523.529894
+iter  20 value 1523.138696
+iter  30 value 1522.840327
+iter  40 value 1522.317690
+iter  50 value 1522.276615
+iter  60 value 1522.268736
+final  value 1522.267451 
+converged
+# weights:  21
+initial  value 1575.406882 
+iter  10 value 1523.306373
+iter  20 value 1522.673310
+iter  30 value 1522.395176
+iter  40 value 1522.337320
+iter  50 value 1522.276634
+iter  60 value 1522.266809
+final  value 1522.266727 
+converged
+# weights:  5
+initial  value 1572.482359 
+iter  10 value 1515.108671
+iter  20 value 1514.854945
+final  value 1514.845286 
+converged
+# weights:  13
+initial  value 1566.777331 
+iter  10 value 1516.298681
+iter  20 value 1514.501659
+final  value 1514.500310 
+converged
+# weights:  21
+initial  value 1644.039620 
+iter  10 value 1515.033210
+iter  20 value 1514.500329
+final  value 1514.500310 
+converged
+# weights:  5
+initial  value 1634.088728 
+iter  10 value 1520.140455
+iter  20 value 1515.659950
+iter  30 value 1515.351760
+iter  40 value 1514.973812
+iter  40 value 1514.973810
+iter  40 value 1514.973810
+final  value 1514.973810 
+converged
+# weights:  13
+initial  value 1564.644146 
+iter  10 value 1515.620600
+iter  20 value 1514.828786
+iter  30 value 1514.691562
+iter  40 value 1514.646218
+iter  50 value 1514.633085
+iter  60 value 1514.628010
+final  value 1514.625722 
+converged
+# weights:  21
+initial  value 1570.856921 
+iter  10 value 1517.904954
+iter  20 value 1514.816460
+iter  30 value 1514.711770
+iter  40 value 1514.672887
+iter  50 value 1514.649676
+iter  60 value 1514.626198
+iter  70 value 1514.623048
+final  value 1514.622894 
+converged
+# weights:  5
+initial  value 1574.390708 
+iter  10 value 1515.849044
+final  value 1515.825827 
+converged
+# weights:  13
+initial  value 1589.414791 
+iter  10 value 1519.392684
+iter  20 value 1515.932690
+iter  30 value 1515.825112
+iter  40 value 1515.763547
+iter  50 value 1515.727152
+iter  60 value 1515.675660
+iter  70 value 1515.655671
+iter  80 value 1515.639659
+final  value 1515.637984 
+converged
+# weights:  21
+initial  value 1841.092565 
+iter  10 value 1553.008093
+iter  20 value 1529.645806
+iter  30 value 1516.566906
+iter  40 value 1515.796612
+iter  50 value 1515.734529
+iter  60 value 1515.683891
+iter  70 value 1515.615210
+iter  80 value 1515.606594
+iter  90 value 1515.605784
+iter 100 value 1515.603651
+final  value 1515.603651 
+stopped after 100 iterations
+# weights:  5
+initial  value 1680.514496 
+iter  10 value 1517.228107
+final  value 1516.619996 
+converged
+# weights:  13
+initial  value 1608.337719 
+iter  10 value 1517.943839
+iter  20 value 1516.807959
+iter  30 value 1516.606726
+iter  40 value 1516.503042
+final  value 1516.497811 
+converged
+# weights:  21
+initial  value 1631.347555 
+iter  10 value 1517.322099
+iter  20 value 1516.795036
+iter  30 value 1516.650600
+iter  40 value 1516.559283
+iter  50 value 1516.534987
+iter  60 value 1516.528215
+iter  70 value 1516.523865
+final  value 1516.523828 
+converged
+# weights:  5
+initial  value 1625.912545 
+iter  10 value 1523.118283
+iter  20 value 1519.463488
+final  value 1519.351730 
+converged
+# weights:  13
+initial  value 1551.576731 
+iter  10 value 1525.134341
+iter  20 value 1519.414163
+iter  30 value 1518.643805
+iter  40 value 1518.577800
+iter  50 value 1518.568397
+final  value 1518.566528 
+converged
+# weights:  21
+initial  value 2035.205846 
+iter  10 value 1520.787595
+iter  20 value 1519.048526
+iter  30 value 1518.865636
+iter  40 value 1518.775960
+iter  50 value 1518.731959
+final  value 1518.728449 
+converged
+# weights:  5
+initial  value 1948.523696 
+iter  10 value 1542.536619
+iter  20 value 1527.364971
+iter  30 value 1522.328445
+iter  40 value 1520.482024
+iter  50 value 1518.696829
+iter  60 value 1518.076593
+iter  70 value 1518.054562
+iter  80 value 1518.004673
+iter  90 value 1517.879264
+iter 100 value 1517.676888
+final  value 1517.676888 
+stopped after 100 iterations
+# weights:  13
+initial  value 1642.755716 
+iter  10 value 1517.986220
+iter  20 value 1517.617463
+final  value 1517.617265 
+converged
+# weights:  21
+initial  value 1538.242438 
+iter  10 value 1518.060120
+iter  20 value 1517.617323
+final  value 1517.617265 
+converged
+# weights:  5
+initial  value 1595.238761 
+iter  10 value 1518.283519
+iter  20 value 1517.708202
+final  value 1517.707895 
+converged
+# weights:  13
+initial  value 1557.919942 
+iter  10 value 1517.919403
+iter  20 value 1517.801730
+iter  30 value 1517.770692
+iter  40 value 1517.724604
+iter  50 value 1517.716089
+final  value 1517.715415 
+converged
+# weights:  21
+initial  value 1927.947408 
+iter  10 value 1539.183060
+iter  20 value 1521.515937
+iter  30 value 1517.879104
+iter  40 value 1517.751553
+iter  50 value 1517.725833
+final  value 1517.722205 
+converged
+# weights:  5
+initial  value 1679.974808 
+iter  10 value 1528.355646
+iter  20 value 1518.488515
+final  value 1518.409261 
+converged
+# weights:  13
+initial  value 1576.336016 
+iter  10 value 1521.249675
+iter  20 value 1519.400959
+iter  30 value 1519.096633
+iter  40 value 1518.480595
+iter  50 value 1518.430692
+iter  60 value 1518.407970
+final  value 1518.407340 
+converged
+# weights:  21
+initial  value 1566.082233 
+iter  10 value 1520.048426
+iter  20 value 1518.817478
+iter  30 value 1518.470194
+iter  40 value 1518.441546
+iter  50 value 1518.409036
+final  value 1518.407217 
+converged
+# weights:  5
+initial  value 2103.712529 
+iter  10 value 1520.549021
+iter  20 value 1519.087576
+final  value 1519.086690 
+converged
+# weights:  13
+initial  value 1542.763735 
+iter  10 value 1520.533395
+iter  20 value 1519.495166
+iter  30 value 1519.169068
+iter  40 value 1519.085154
+iter  50 value 1519.084635
+final  value 1519.084392 
+converged
+# weights:  21
+initial  value 1865.482232 
+iter  10 value 1522.386158
+iter  20 value 1519.904938
+iter  30 value 1519.504277
+iter  40 value 1519.345766
+iter  50 value 1519.238458
+iter  60 value 1519.215889
+iter  70 value 1519.213467
+final  value 1519.213437 
+converged
+# weights:  5
+initial  value 1547.366183 
+iter  10 value 1528.743571
+iter  20 value 1521.796868
+iter  30 value 1521.552975
+final  value 1521.552484 
+converged
+# weights:  13
+initial  value 1608.840389 
+iter  10 value 1523.956354
+iter  20 value 1520.947401
+iter  30 value 1520.861215
+iter  40 value 1520.813468
+iter  50 value 1520.809236
+iter  50 value 1520.809234
+iter  50 value 1520.809234
+final  value 1520.809234 
+converged
+# weights:  21
+initial  value 1562.833603 
+iter  10 value 1521.325246
+iter  20 value 1520.911448
+iter  30 value 1520.826275
+iter  40 value 1520.817626
+final  value 1520.812559 
+converged
+# weights:  5
+initial  value 1674.481651 
+iter  10 value 1516.466408
+iter  20 value 1513.523407
+iter  30 value 1513.353597
+final  value 1513.264786 
+converged
+# weights:  13
+initial  value 1566.664089 
+iter  10 value 1514.202756
+final  value 1513.264607 
+converged
+# weights:  21
+initial  value 1734.837530 
+iter  10 value 1518.232797
+iter  20 value 1513.265352
+final  value 1513.264607 
+converged
+# weights:  5
+initial  value 1550.392270 
+iter  10 value 1519.101732
+iter  20 value 1513.969835
+iter  30 value 1513.650907
+iter  40 value 1513.406151
+final  value 1513.377223 
+converged
+# weights:  13
+initial  value 1830.175678 
+iter  10 value 1531.372932
+iter  20 value 1522.738456
+iter  30 value 1516.409359
+iter  40 value 1513.867825
+iter  50 value 1513.571548
+iter  60 value 1513.460667
+iter  70 value 1513.398372
+iter  80 value 1513.392391
+final  value 1513.392015 
+converged
+# weights:  21
+initial  value 1898.993039 
+iter  10 value 1533.504658
+iter  20 value 1522.384246
+iter  30 value 1513.697936
+iter  40 value 1513.482312
+iter  50 value 1513.447746
+iter  60 value 1513.424484
+iter  70 value 1513.390406
+iter  80 value 1513.386421
+final  value 1513.386015 
+converged
+# weights:  5
+initial  value 1587.074963 
+iter  10 value 1526.766762
+iter  20 value 1514.277134
+final  value 1514.276257 
+converged
+# weights:  13
+initial  value 1552.580709 
+iter  10 value 1517.595998
+iter  20 value 1514.585315
+iter  30 value 1514.492691
+iter  40 value 1514.417652
+iter  50 value 1514.394182
+iter  60 value 1514.389169
+final  value 1514.387942 
+converged
+# weights:  21
+initial  value 1560.208539 
+iter  10 value 1514.585367
+iter  20 value 1514.305393
+iter  30 value 1514.282115
+iter  40 value 1514.277581
+final  value 1514.276723 
+converged
+# weights:  5
+initial  value 1664.548737 
+iter  10 value 1515.286307
+iter  20 value 1515.139798
+iter  20 value 1515.139797
+iter  20 value 1515.139797
+final  value 1515.139797 
+converged
+# weights:  13
+initial  value 2012.203715 
+iter  10 value 1524.161864
+iter  20 value 1515.462232
+iter  30 value 1515.178845
+iter  40 value 1515.149722
+iter  50 value 1515.138167
+iter  60 value 1515.136421
+final  value 1515.136307 
+converged
+# weights:  21
+initial  value 1566.590202 
+iter  10 value 1517.111409
+iter  20 value 1515.425478
+iter  30 value 1515.218029
+iter  40 value 1515.152052
+final  value 1515.144587 
+converged
+# weights:  5
+initial  value 1579.146494 
+iter  10 value 1532.611537
+iter  20 value 1518.437189
+final  value 1518.134257 
+converged
+# weights:  13
+initial  value 1554.124199 
+iter  10 value 1519.864262
+iter  20 value 1518.236183
+iter  30 value 1517.775827
+iter  40 value 1517.662190
+final  value 1517.662057 
+converged
+# weights:  21
+initial  value 1714.743799 
+iter  10 value 1518.791082
+iter  20 value 1517.780277
+iter  30 value 1517.643024
+iter  40 value 1517.592722
+iter  50 value 1517.546252
+iter  60 value 1517.531443
+iter  60 value 1517.531439
+iter  60 value 1517.531439
+final  value 1517.531439 
+converged
+# weights:  5
+initial  value 1683.042836 
+iter  10 value 1519.797559
+iter  20 value 1519.215360
+final  value 1519.195241 
+converged
+# weights:  13
+initial  value 2012.314132 
+iter  10 value 1542.734359
+iter  20 value 1533.665204
+iter  30 value 1521.112378
+iter  40 value 1519.196714
+iter  50 value 1519.190890
+iter  60 value 1519.184724
+iter  70 value 1519.085757
+iter  80 value 1519.066634
+iter  80 value 1519.066627
+iter  80 value 1519.066626
+final  value 1519.066626 
+converged
+# weights:  21
+initial  value 1588.277963 
+iter  10 value 1522.349627
+iter  20 value 1519.101976
+final  value 1519.066623 
+converged
+# weights:  5
+initial  value 1547.276787 
+iter  10 value 1519.817929
+iter  20 value 1519.310182
+final  value 1519.297864 
+converged
+# weights:  13
+initial  value 1631.242041 
+iter  10 value 1520.928295
+iter  20 value 1519.599603
+iter  30 value 1519.316444
+iter  40 value 1519.180885
+iter  50 value 1519.170720
+final  value 1519.169085 
+converged
+# weights:  21
+initial  value 1554.498929 
+iter  10 value 1519.690845
+iter  20 value 1519.230712
+iter  30 value 1519.191428
+iter  40 value 1519.180527
+final  value 1519.179185 
+converged
+# weights:  5
+initial  value 1543.524905 
+iter  10 value 1521.710764
+iter  20 value 1520.349935
+final  value 1520.349271 
+converged
+# weights:  13
+initial  value 1605.857202 
+iter  10 value 1521.266757
+iter  20 value 1520.305924
+iter  30 value 1520.160822
+iter  40 value 1520.021602
+final  value 1520.020174 
+converged
+# weights:  21
+initial  value 1563.768218 
+iter  10 value 1520.739475
+iter  20 value 1520.171208
+iter  30 value 1520.087943
+iter  40 value 1520.065853
+iter  50 value 1520.054761
+iter  60 value 1520.051450
+iter  70 value 1520.050695
+iter  70 value 1520.050688
+iter  70 value 1520.050688
+final  value 1520.050688 
+converged
+# weights:  5
+initial  value 1685.756315 
+iter  10 value 1521.738863
+iter  20 value 1520.918941
+iter  20 value 1520.918935
+iter  20 value 1520.918935
+final  value 1520.918935 
+converged
+# weights:  13
+initial  value 1541.251111 
+iter  10 value 1521.680401
+iter  20 value 1521.260229
+iter  30 value 1521.124164
+iter  40 value 1521.025552
+iter  50 value 1521.000810
+iter  60 value 1520.973952
+iter  70 value 1520.965566
+final  value 1520.965328 
+converged
+# weights:  21
+initial  value 1546.172661 
+iter  10 value 1522.098896
+iter  20 value 1520.913226
+iter  30 value 1520.836996
+final  value 1520.835808 
+converged
+# weights:  5
+initial  value 1754.633554 
+iter  10 value 1523.028713
+iter  20 value 1522.835000
+iter  20 value 1522.834993
+iter  20 value 1522.834993
+final  value 1522.834993 
+converged
+# weights:  13
+initial  value 1661.868893 
+iter  10 value 1525.186005
+iter  20 value 1523.203987
+iter  30 value 1523.131072
+iter  40 value 1523.078291
+final  value 1523.078096 
+converged
+# weights:  21
+initial  value 1755.438528 
+iter  10 value 1532.493983
+iter  20 value 1523.883173
+iter  30 value 1522.990355
+iter  40 value 1522.841137
+iter  50 value 1522.812801
+iter  60 value 1522.803022
+iter  70 value 1522.801072
+final  value 1522.800801 
+converged
+# weights:  5
+initial  value 1612.676281 
+iter  10 value 1520.719726
+iter  20 value 1520.062893
+iter  30 value 1520.033691
+final  value 1520.033606 
+converged
+# weights:  13
+initial  value 1548.703329 
+iter  10 value 1520.336983
+iter  20 value 1519.920720
+final  value 1519.919385 
+converged
+# weights:  21
+initial  value 1550.070567 
+iter  10 value 1520.466651
+iter  20 value 1519.919702
+final  value 1519.919386 
+converged
+# weights:  5
+initial  value 1573.950813 
+iter  10 value 1520.341813
+iter  20 value 1520.104584
+final  value 1520.104446 
+converged
+# weights:  13
+initial  value 1633.085492 
+iter  10 value 1523.844264
+iter  20 value 1520.190251
+iter  30 value 1520.059150
+iter  40 value 1520.010074
+iter  50 value 1519.997656
+final  value 1519.995849 
+converged
+# weights:  21
+initial  value 1809.106589 
+iter  10 value 1521.196844
+iter  20 value 1520.134151
+iter  30 value 1520.018474
+iter  40 value 1519.996556
+final  value 1519.992939 
+converged
+# weights:  5
+initial  value 1716.305917 
+iter  10 value 1533.498827
+iter  20 value 1520.726361
+final  value 1520.668623 
+converged
+# weights:  13
+initial  value 1552.715009 
+iter  10 value 1525.291598
+iter  20 value 1521.471581
+iter  30 value 1520.878367
+iter  40 value 1520.721818
+iter  50 value 1520.704704
+final  value 1520.690652 
+converged
+# weights:  21
+initial  value 1613.226581 
+iter  10 value 1521.367071
+iter  20 value 1520.756553
+iter  30 value 1520.695425
+iter  40 value 1520.664387
+iter  50 value 1520.599344
+iter  60 value 1520.587589
+final  value 1520.587311 
+converged
+# weights:  5
+initial  value 1542.813972 
+iter  10 value 1522.757600
+iter  20 value 1521.247485
+final  value 1521.229007 
+converged
+# weights:  13
+initial  value 1681.369993 
+iter  10 value 1527.083908
+iter  20 value 1521.224868
+iter  30 value 1521.183708
+final  value 1521.183513 
+converged
+# weights:  21
+initial  value 1553.481906 
+iter  10 value 1522.024188
+iter  20 value 1521.514720
+iter  30 value 1521.342417
+iter  40 value 1521.229291
+iter  50 value 1521.186428
+iter  60 value 1521.179176
+iter  70 value 1521.176551
+iter  80 value 1521.174294
+final  value 1521.173638 
+converged
+# weights:  5
+initial  value 1542.470337 
+iter  10 value 1523.375303
+final  value 1523.334357 
+converged
+# weights:  13
+initial  value 1559.063678 
+iter  10 value 1527.127697
+iter  20 value 1523.272282
+iter  30 value 1522.681808
+iter  40 value 1522.650899
+iter  50 value 1522.645916
+final  value 1522.644449 
+converged
+# weights:  21
+initial  value 1735.936993 
+iter  10 value 1525.704215
+iter  20 value 1522.819464
+iter  30 value 1522.662575
+iter  40 value 1522.648308
+final  value 1522.647949 
+converged
+# weights:  5
+initial  value 1542.715820 
+iter  10 value 1518.440952
+iter  20 value 1516.808186
+iter  30 value 1516.340575
+iter  40 value 1516.311585
+iter  50 value 1516.271386
+iter  60 value 1516.223794
+iter  70 value 1516.174096
+final  value 1516.173407 
+converged
+# weights:  13
+initial  value 1626.082964 
+iter  10 value 1516.250114
+iter  20 value 1516.134630
+iter  20 value 1516.134630
+iter  20 value 1516.134630
+final  value 1516.134630 
+converged
+# weights:  21
+initial  value 1802.909623 
+iter  10 value 1516.295584
+iter  20 value 1516.134632
+iter  20 value 1516.134630
+iter  20 value 1516.134630
+final  value 1516.134630 
+converged
+# weights:  5
+initial  value 1595.915389 
+iter  10 value 1523.755705
+iter  20 value 1516.341737
+iter  30 value 1516.282294
+iter  30 value 1516.282293
+iter  30 value 1516.282293
+final  value 1516.282293 
+converged
+# weights:  13
+initial  value 1540.880335 
+iter  10 value 1516.424008
+iter  20 value 1516.245354
+final  value 1516.236457 
+converged
+# weights:  21
+initial  value 1550.771622 
+iter  10 value 1516.905662
+iter  20 value 1516.430300
+iter  30 value 1516.292071
+iter  40 value 1516.265194
+iter  50 value 1516.256411
+iter  60 value 1516.247897
+iter  60 value 1516.247891
+final  value 1516.247032 
+converged
+# weights:  5
+initial  value 1605.850576 
+iter  10 value 1530.776794
+iter  20 value 1517.122880
+final  value 1516.993021 
+converged
+# weights:  13
+initial  value 1541.092285 
+iter  10 value 1517.793783
+iter  20 value 1517.115914
+iter  30 value 1517.042480
+iter  40 value 1516.964413
+iter  50 value 1516.960968
+final  value 1516.960534 
+converged
+# weights:  21
+initial  value 1553.358657 
+iter  10 value 1519.815740
+iter  20 value 1517.698550
+iter  30 value 1517.272447
+iter  40 value 1517.141382
+iter  50 value 1517.032366
+iter  60 value 1517.018254
+iter  70 value 1517.013872
+iter  80 value 1517.006565
+final  value 1517.005645 
+converged
+# weights:  5
+initial  value 1908.650739 
+iter  10 value 1518.185134
+final  value 1518.079268 
+converged
+# weights:  13
+initial  value 1799.613615 
+iter  10 value 1520.050599
+iter  20 value 1517.716335
+iter  30 value 1517.693608
+final  value 1517.692756 
+converged
+# weights:  21
+initial  value 1544.368002 
+iter  10 value 1518.495611
+iter  20 value 1517.931100
+iter  30 value 1517.745177
+iter  40 value 1517.712696
+iter  50 value 1517.693127
+iter  60 value 1517.688407
+final  value 1517.688183 
+converged
+# weights:  5
+initial  value 1549.868102 
+iter  10 value 1520.390226
+final  value 1520.306073 
+converged
+# weights:  13
+initial  value 1584.714146 
+iter  10 value 1520.135556
+iter  20 value 1519.686134
+iter  30 value 1519.627237
+iter  40 value 1519.528464
+iter  50 value 1519.520177
+iter  60 value 1519.515545
+final  value 1519.514599 
+converged
+# weights:  21
+initial  value 1556.775655 
+iter  10 value 1521.246833
+iter  20 value 1519.662843
+iter  30 value 1519.532681
+iter  40 value 1519.516245
+final  value 1519.515071 
+converged
+# weights:  5
+initial  value 1612.157506 
+iter  10 value 1522.822524
+iter  20 value 1517.993023
+iter  30 value 1515.285042
+iter  40 value 1515.265975
+iter  50 value 1515.254368
+iter  60 value 1515.251755
+final  value 1515.251702 
+converged
+# weights:  13
+initial  value 1632.311653 
+iter  10 value 1515.916125
+iter  20 value 1515.182848
+final  value 1515.180744 
+converged
+# weights:  21
+initial  value 1614.299775 
+iter  10 value 1515.457993
+iter  20 value 1515.181041
+final  value 1515.180740 
+converged
+# weights:  5
+initial  value 1548.371857 
+iter  10 value 1516.698148
+iter  20 value 1515.503002
+final  value 1515.435846 
+converged
+# weights:  13
+initial  value 1530.535055 
+iter  10 value 1515.637306
+iter  20 value 1515.385750
+iter  30 value 1515.333796
+iter  40 value 1515.316937
+iter  50 value 1515.314814
+iter  50 value 1515.314799
+iter  50 value 1515.314798
+final  value 1515.314798 
+converged
+# weights:  21
+initial  value 1660.659885 
+iter  10 value 1515.737115
+iter  20 value 1515.381859
+iter  30 value 1515.365095
+iter  40 value 1515.355445
+iter  50 value 1515.341828
+iter  60 value 1515.324385
+iter  70 value 1515.320746
+final  value 1515.320458 
+converged
+# weights:  5
+initial  value 1539.102772 
+iter  10 value 1516.504110
+final  value 1516.431819 
+converged
+# weights:  13
+initial  value 1543.911357 
+iter  10 value 1518.065650
+iter  20 value 1516.595032
+iter  30 value 1516.531681
+iter  40 value 1516.431609
+iter  50 value 1516.405332
+iter  60 value 1516.399218
+iter  70 value 1516.393824
+final  value 1516.393788 
+converged
+# weights:  21
+initial  value 1612.593796 
+iter  10 value 1517.021648
+iter  20 value 1516.530718
+iter  30 value 1516.457892
+iter  40 value 1516.407708
+iter  50 value 1516.377190
+iter  60 value 1516.364245
+iter  70 value 1516.355013
+iter  80 value 1516.352788
+final  value 1516.351774 
+converged
+# weights:  5
+initial  value 1849.569292 
+iter  10 value 1532.135205
+iter  20 value 1517.932932
+final  value 1517.804875 
+converged
+# weights:  13
+initial  value 1556.373658 
+iter  10 value 1521.438475
+iter  20 value 1518.338758
+iter  30 value 1517.988832
+iter  40 value 1517.819052
+iter  50 value 1517.704994
+iter  60 value 1517.482303
+iter  70 value 1517.426631
+iter  80 value 1517.385754
+iter  90 value 1517.371785
+final  value 1517.370307 
+converged
+# weights:  21
+initial  value 2088.439284 
+iter  10 value 1538.017209
+iter  20 value 1517.608658
+iter  30 value 1517.344293
+iter  40 value 1517.311384
+iter  50 value 1517.305875
+iter  60 value 1517.302000
+iter  70 value 1517.299255
+iter  70 value 1517.299254
+iter  70 value 1517.299254
+final  value 1517.299254 
+converged
+# weights:  5
+initial  value 1545.307267 
+iter  10 value 1519.716547
+final  value 1519.430032 
+converged
+# weights:  13
+initial  value 1584.088327 
+iter  10 value 1520.513923
+iter  20 value 1519.454570
+iter  30 value 1519.394097
+iter  40 value 1519.382565
+iter  40 value 1519.382559
+iter  40 value 1519.382559
+final  value 1519.382559 
+converged
+# weights:  21
+initial  value 1743.388080 
+iter  10 value 1524.973413
+iter  20 value 1520.618203
+iter  30 value 1519.741494
+iter  40 value 1519.707234
+iter  50 value 1519.596868
+iter  60 value 1519.545661
+iter  70 value 1519.516239
+final  value 1519.515236 
+converged
+# weights:  5
+initial  value 1546.591001 
+iter  10 value 1518.952618
+iter  20 value 1518.414923
+final  value 1518.414395 
+converged
+# weights:  13
+initial  value 1630.864330 
+iter  10 value 1519.011765
+iter  20 value 1518.352589
+final  value 1518.345818 
+converged
+# weights:  21
+initial  value 1548.579396 
+iter  10 value 1519.518060
+iter  20 value 1518.346044
+final  value 1518.345817 
+converged
+# weights:  5
+initial  value 1576.315190 
+iter  10 value 1524.135297
+iter  20 value 1518.630843
+iter  30 value 1518.553944
+iter  40 value 1518.508484
+final  value 1518.508397 
+converged
+# weights:  13
+initial  value 1584.242823 
+iter  10 value 1520.271958
+iter  20 value 1518.572157
+iter  30 value 1518.530173
+iter  40 value 1518.461622
+iter  50 value 1518.449500
+final  value 1518.448963 
+converged
+# weights:  21
+initial  value 1680.149997 
+iter  10 value 1521.929712
+iter  20 value 1519.770962
+iter  30 value 1519.005390
+iter  40 value 1518.855634
+iter  50 value 1518.703230
+iter  60 value 1518.496393
+iter  70 value 1518.461514
+iter  80 value 1518.452765
+iter  90 value 1518.451071
+iter 100 value 1518.446230
+final  value 1518.446230 
+stopped after 100 iterations
+# weights:  5
+initial  value 1654.199925 
+iter  10 value 1520.325550
+iter  20 value 1519.280052
+final  value 1519.275078 
+converged
+# weights:  13
+initial  value 1622.500349 
+iter  10 value 1519.519441
+iter  20 value 1519.349366
+iter  30 value 1519.277337
+iter  40 value 1519.233777
+final  value 1519.233558 
+converged
+# weights:  21
+initial  value 1578.361888 
+iter  10 value 1519.728842
+iter  20 value 1519.455310
+iter  30 value 1519.364444
+iter  40 value 1519.308890
+iter  50 value 1519.281031
+iter  60 value 1519.276956
+iter  60 value 1519.276948
+iter  60 value 1519.276947
+final  value 1519.276947 
+converged
+# weights:  5
+initial  value 1565.983217 
+iter  10 value 1521.292206
+iter  20 value 1520.387879
+final  value 1520.387551 
+converged
+# weights:  13
+initial  value 1554.437451 
+iter  10 value 1523.979757
+iter  20 value 1521.231939
+iter  30 value 1520.562254
+iter  40 value 1520.005900
+final  value 1519.998879 
+converged
+# weights:  21
+initial  value 1592.565169 
+iter  10 value 1522.421205
+iter  20 value 1520.450621
+iter  30 value 1520.262412
+iter  40 value 1520.165379
+iter  50 value 1520.119047
+iter  60 value 1520.099723
+iter  70 value 1520.096178
+final  value 1520.096102 
+converged
+# weights:  5
+initial  value 1560.664050 
+iter  10 value 1522.012893
+iter  20 value 1521.874569
+final  value 1521.874458 
+converged
+# weights:  13
+initial  value 1738.793350 
+iter  10 value 1524.334469
+iter  20 value 1522.113481
+iter  30 value 1521.959027
+iter  40 value 1521.863396
+iter  50 value 1521.862624
+iter  50 value 1521.862623
+iter  50 value 1521.862623
+final  value 1521.862623 
+converged
+# weights:  21
+initial  value 1572.965873 
+iter  10 value 1522.198386
+iter  20 value 1521.874209
+iter  30 value 1521.865395
+final  value 1521.865012 
+converged
+# weights:  5
+initial  value 1543.073146 
+iter  10 value 1520.161915
+iter  20 value 1519.893763
+final  value 1519.875221 
+converged
+# weights:  13
+initial  value 2027.415122 
+iter  10 value 1520.222786
+final  value 1519.699918 
+converged
+# weights:  21
+initial  value 2017.856056 
+iter  10 value 1535.284754
+iter  20 value 1521.295914
+iter  30 value 1519.705833
+final  value 1519.699909 
+converged
+# weights:  5
+initial  value 1549.124266 
+iter  10 value 1521.604361
+iter  20 value 1520.124814
+iter  30 value 1520.008423
+iter  30 value 1520.008422
+iter  30 value 1520.008422
+final  value 1520.008422 
+converged
+# weights:  13
+initial  value 1794.900622 
+iter  10 value 1526.394509
+iter  20 value 1520.064953
+iter  30 value 1519.888727
+iter  40 value 1519.854995
+iter  50 value 1519.833089
+iter  60 value 1519.823878
+final  value 1519.822624 
+converged
+# weights:  21
+initial  value 1683.987918 
+iter  10 value 1522.060739
+iter  20 value 1519.893946
+iter  30 value 1519.852746
+iter  40 value 1519.833519
+iter  50 value 1519.822193
+iter  60 value 1519.813607
+iter  70 value 1519.812022
+final  value 1519.811824 
+converged
+# weights:  5
+initial  value 1599.984233 
+iter  10 value 1523.793679
+iter  20 value 1521.796002
+iter  30 value 1520.903881
+final  value 1520.865419 
+converged
+# weights:  13
+initial  value 1552.203679 
+iter  10 value 1522.790473
+iter  20 value 1520.763311
+iter  30 value 1520.733693
+iter  40 value 1520.730765
+final  value 1520.730738 
+converged
+# weights:  21
+initial  value 1566.996388 
+iter  10 value 1521.313598
+iter  20 value 1520.844218
+iter  30 value 1520.773826
+iter  40 value 1520.756166
+iter  50 value 1520.742829
+iter  60 value 1520.739101
+iter  70 value 1520.737364
+final  value 1520.737229 
+converged
+# weights:  5
+initial  value 1545.684724 
+iter  10 value 1523.407963
+iter  20 value 1521.640993
+iter  20 value 1521.640980
+iter  20 value 1521.640980
+final  value 1521.640980 
+converged
+# weights:  13
+initial  value 1716.969355 
+iter  10 value 1522.337497
+iter  20 value 1521.596406
+iter  30 value 1521.577567
+final  value 1521.577489 
+converged
+# weights:  21
+initial  value 1573.287831 
+iter  10 value 1526.397719
+iter  20 value 1522.680336
+iter  30 value 1521.743040
+iter  40 value 1521.628022
+iter  50 value 1521.579285
+iter  60 value 1521.568218
+iter  60 value 1521.568209
+iter  60 value 1521.568209
+final  value 1521.568209 
+converged
+# weights:  5
+initial  value 1554.612469 
+iter  10 value 1528.147204
+final  value 1523.515807 
+converged
+# weights:  13
+initial  value 1704.748584 
+iter  10 value 1545.760330
+iter  20 value 1523.909146
+iter  30 value 1523.704622
+iter  40 value 1523.495391
+final  value 1523.493507 
+converged
+# weights:  21
+initial  value 1610.247054 
+iter  10 value 1524.889409
+iter  20 value 1523.701705
+iter  30 value 1523.517981
+iter  40 value 1523.496662
+final  value 1523.493798 
+converged
+# weights:  5
+initial  value 1663.132249 
+iter  10 value 1518.042600
+iter  20 value 1517.272409
+iter  30 value 1516.962838
+iter  40 value 1516.654297
+final  value 1516.634280 
+converged
+# weights:  13
+initial  value 1633.770549 
+iter  10 value 1516.686730
+final  value 1516.599145 
+converged
+# weights:  21
+initial  value 1583.836579 
+iter  10 value 1517.406525
+iter  20 value 1516.599147
+iter  20 value 1516.599142
+iter  20 value 1516.599142
+final  value 1516.599142 
+converged
+# weights:  5
+initial  value 1575.032160 
+iter  10 value 1519.585313
+iter  20 value 1518.139085
+iter  30 value 1517.197640
+iter  40 value 1516.928011
+iter  50 value 1516.743418
+final  value 1516.736830 
+converged
+# weights:  13
+initial  value 1538.515362 
+iter  10 value 1518.499328
+iter  20 value 1516.792150
+iter  30 value 1516.729227
+iter  40 value 1516.700210
+iter  50 value 1516.693572
+final  value 1516.692982 
+converged
+# weights:  21
+initial  value 1683.240289 
+iter  10 value 1517.424137
+iter  20 value 1516.755939
+iter  30 value 1516.736275
+iter  40 value 1516.714405
+iter  50 value 1516.706306
+iter  60 value 1516.686483
+iter  70 value 1516.684991
+final  value 1516.684830 
+converged
+# weights:  5
+initial  value 1544.082344 
+iter  10 value 1517.677427
+iter  20 value 1517.418517
+final  value 1517.417985 
+converged
+# weights:  13
+initial  value 1689.196570 
+iter  10 value 1539.643952
+iter  20 value 1518.262955
+iter  30 value 1517.545439
+iter  40 value 1517.425195
+iter  50 value 1517.392035
+iter  50 value 1517.392023
+iter  50 value 1517.392021
+final  value 1517.392021 
+converged
+# weights:  21
+initial  value 1590.548323 
+iter  10 value 1517.769346
+iter  20 value 1517.475876
+iter  30 value 1517.454783
+iter  40 value 1517.436869
+iter  50 value 1517.430789
+final  value 1517.430156 
+converged
+# weights:  5
+initial  value 1533.583809 
+iter  10 value 1518.510184
+final  value 1518.430914 
+converged
+# weights:  13
+initial  value 1542.255836 
+iter  10 value 1518.489719
+iter  20 value 1518.102081
+iter  30 value 1518.092069
+iter  40 value 1518.083886
+final  value 1518.083494 
+converged
+# weights:  21
+initial  value 1876.533028 
+iter  10 value 1534.008108
+iter  20 value 1520.305635
+iter  30 value 1518.483555
+iter  40 value 1518.442830
+iter  50 value 1518.371468
+iter  60 value 1518.325189
+iter  70 value 1518.196251
+iter  80 value 1518.177500
+iter  90 value 1518.164461
+final  value 1518.163264 
+converged
+# weights:  5
+initial  value 1556.907246 
+iter  10 value 1520.465903
+iter  20 value 1519.850842
+final  value 1519.844379 
+converged
+# weights:  13
+initial  value 1723.561429 
+iter  10 value 1524.336675
+iter  20 value 1520.107460
+iter  30 value 1519.940909
+iter  40 value 1519.818856
+final  value 1519.818814 
+converged
+# weights:  21
+initial  value 1592.510875 
+iter  10 value 1521.842282
+iter  20 value 1520.026718
+iter  30 value 1519.884823
+iter  40 value 1519.832347
+final  value 1519.823182 
+converged
+# weights:  5
+initial  value 1544.844827 
+iter  10 value 1516.557881
+iter  20 value 1515.918188
+final  value 1515.913070 
+converged
+# weights:  13
+initial  value 1677.419502 
+iter  10 value 1518.071400
+iter  20 value 1517.069168
+final  value 1515.811013 
+converged
+# weights:  21
+initial  value 1791.958672 
+iter  10 value 1515.871991
+final  value 1515.811012 
+converged
+# weights:  5
+initial  value 1832.111534 
+iter  10 value 1520.635524
+iter  20 value 1516.874653
+iter  30 value 1516.046371
+iter  40 value 1516.002586
+iter  40 value 1516.002585
+final  value 1516.002585 
+converged
+# weights:  13
+initial  value 1541.242503 
+iter  10 value 1516.163830
+iter  20 value 1515.942241
+iter  30 value 1515.926529
+iter  40 value 1515.905181
+iter  50 value 1515.904026
+final  value 1515.903748 
+converged
+# weights:  21
+initial  value 1637.653513 
+iter  10 value 1516.036563
+iter  20 value 1515.927935
+iter  30 value 1515.919038
+iter  40 value 1515.916154
+iter  50 value 1515.911137
+iter  60 value 1515.907860
+final  value 1515.907620 
+converged
+# weights:  5
+initial  value 1671.628600 
+iter  10 value 1516.804734
+final  value 1516.749031 
+converged
+# weights:  13
+initial  value 1561.856106 
+iter  10 value 1517.493811
+iter  20 value 1516.817324
+iter  30 value 1516.747296
+iter  40 value 1516.681178
+final  value 1516.680449 
+converged
+# weights:  21
+initial  value 1601.835817 
+iter  10 value 1517.573421
+iter  20 value 1516.881548
+iter  30 value 1516.729436
+iter  40 value 1516.680391
+final  value 1516.677886 
+converged
+# weights:  5
+initial  value 1609.829373 
+iter  10 value 1518.538043
+iter  20 value 1517.488968
+final  value 1517.488677 
+converged
+# weights:  13
+initial  value 1542.024994 
+iter  10 value 1518.963929
+iter  20 value 1517.823226
+iter  30 value 1517.681762
+iter  40 value 1517.610909
+iter  50 value 1517.589642
+iter  60 value 1517.584125
+final  value 1517.583524 
+converged
+# weights:  21
+initial  value 2405.291435 
+iter  10 value 1521.051667
+iter  20 value 1518.898378
+iter  30 value 1518.265477
+iter  40 value 1517.875260
+iter  50 value 1517.642087
+iter  60 value 1517.447097
+iter  70 value 1517.442854
+final  value 1517.442357 
+converged
+# weights:  5
+initial  value 1634.550541 
+iter  10 value 1521.107651
+iter  20 value 1519.428801
+final  value 1519.372529 
+converged
+# weights:  13
+initial  value 1928.196195 
+iter  10 value 1542.469361
+iter  20 value 1521.102616
+iter  30 value 1520.196616
+iter  40 value 1519.553148
+iter  50 value 1519.352558
+iter  60 value 1519.347569
+final  value 1519.346064 
+converged
+# weights:  21
+initial  value 1543.112461 
+iter  10 value 1520.045036
+iter  20 value 1519.674909
+iter  30 value 1519.590630
+iter  40 value 1519.570523
+iter  50 value 1519.529170
+iter  60 value 1519.519752
+final  value 1519.519723 
+converged
+# weights:  5
+initial  value 1543.263065 
+iter  10 value 1514.919284
+iter  20 value 1514.539907
+final  value 1514.529374 
+converged
+# weights:  13
+initial  value 2306.755528 
+iter  10 value 1542.387812
+iter  20 value 1522.571074
+iter  30 value 1515.248393
+iter  40 value 1514.544737
+final  value 1514.529517 
+converged
+# weights:  21
+initial  value 1543.486130 
+iter  10 value 1514.559487
+iter  20 value 1514.110701
+final  value 1514.109149 
+converged
+# weights:  5
+initial  value 1717.192527 
+iter  10 value 1525.352565
+iter  20 value 1520.227003
+iter  30 value 1517.537455
+iter  40 value 1516.220846
+iter  50 value 1515.851539
+iter  60 value 1514.851047
+final  value 1514.691269 
+converged
+# weights:  13
+initial  value 1543.856187 
+iter  10 value 1515.557388
+iter  20 value 1514.289402
+iter  30 value 1514.277672
+iter  40 value 1514.262254
+iter  50 value 1514.253428
+iter  60 value 1514.252436
+final  value 1514.252409 
+converged
+# weights:  21
+initial  value 1739.797578 
+iter  10 value 1516.899241
+iter  20 value 1514.350284
+iter  30 value 1514.301551
+iter  40 value 1514.282236
+iter  50 value 1514.271780
+iter  60 value 1514.252359
+iter  70 value 1514.249817
+final  value 1514.249126 
+converged
+# weights:  5
+initial  value 1585.313020 
+iter  10 value 1518.298487
+iter  20 value 1515.877561
+final  value 1515.872624 
+converged
+# weights:  13
+initial  value 1567.071823 
+iter  10 value 1520.084097
+iter  20 value 1516.008334
+iter  30 value 1515.755437
+iter  40 value 1515.492043
+iter  50 value 1515.476234
+iter  60 value 1515.457784
+iter  70 value 1515.421319
+iter  80 value 1515.418068
+final  value 1515.418022 
+converged
+# weights:  21
+initial  value 1588.994962 
+iter  10 value 1517.295762
+iter  20 value 1516.198170
+iter  30 value 1515.917465
+iter  40 value 1515.796146
+iter  50 value 1515.615833
+iter  60 value 1515.434931
+iter  70 value 1515.403283
+iter  80 value 1515.397336
+iter  90 value 1515.389884
+iter 100 value 1515.381326
+final  value 1515.381326 
+stopped after 100 iterations
+# weights:  5
+initial  value 1557.740946 
+iter  10 value 1522.970325
+iter  20 value 1518.596991
+iter  30 value 1516.992998
+final  value 1516.934996 
+converged
+# weights:  13
+initial  value 1608.724989 
+iter  10 value 1519.245866
+iter  20 value 1517.192933
+iter  30 value 1516.753986
+iter  40 value 1516.608881
+iter  50 value 1516.584459
+iter  60 value 1516.529949
+iter  70 value 1516.509763
+iter  80 value 1516.502399
+final  value 1516.501616 
+converged
+# weights:  21
+initial  value 1725.967440 
+iter  10 value 1539.552540
+iter  20 value 1522.559931
+iter  30 value 1517.076111
+iter  40 value 1516.762769
+iter  50 value 1516.735846
+iter  60 value 1516.539406
+iter  70 value 1516.505297
+iter  80 value 1516.464674
+iter  90 value 1516.458880
+iter 100 value 1516.449256
+final  value 1516.449256 
+stopped after 100 iterations
+# weights:  5
+initial  value 1576.429173 
+iter  10 value 1519.699477
+final  value 1518.766437 
+converged
+# weights:  13
+initial  value 1600.633415 
+iter  10 value 1519.379520
+iter  20 value 1518.794350
+iter  30 value 1518.744062
+iter  40 value 1518.736740
+final  value 1518.735904 
+converged
+# weights:  21
+initial  value 1579.079910 
+iter  10 value 1520.172436
+iter  20 value 1518.847515
+iter  30 value 1518.758312
+iter  40 value 1518.739521
+iter  50 value 1518.733300
+iter  60 value 1518.731412
+final  value 1518.731173 
+converged
+# weights:  5
+initial  value 1560.059127 
+iter  10 value 1518.735647
+iter  20 value 1517.866973
+iter  30 value 1516.819305
+final  value 1516.813387 
+converged
+# weights:  13
+initial  value 1994.041183 
+final  value 1542.554375 
+converged
+# weights:  21
+initial  value 1946.147406 
+iter  10 value 1519.285011
+iter  20 value 1516.692347
+iter  30 value 1516.626531
+iter  40 value 1516.592953
+final  value 1516.590724 
+converged
+# weights:  5
+initial  value 1551.758328 
+iter  10 value 1520.081139
+iter  20 value 1516.892729
+final  value 1516.798147 
+converged
+# weights:  13
+initial  value 1539.884410 
+iter  10 value 1516.757900
+iter  20 value 1516.708096
+final  value 1516.693148 
+converged
+# weights:  21
+initial  value 1676.322226 
+iter  10 value 1517.860098
+iter  20 value 1517.092147
+iter  30 value 1516.789039
+iter  40 value 1516.720766
+iter  50 value 1516.699553
+iter  60 value 1516.672139
+final  value 1516.670643 
+converged
+# weights:  5
+initial  value 1561.048227 
+iter  10 value 1520.824877
+iter  20 value 1517.555676
+final  value 1517.552806 
+converged
+# weights:  13
+initial  value 1798.135385 
+iter  10 value 1519.598132
+iter  20 value 1517.441584
+iter  30 value 1517.318373
+iter  40 value 1517.302969
+final  value 1517.302851 
+converged
+# weights:  21
+initial  value 1569.024794 
+iter  10 value 1518.067737
+iter  20 value 1517.316122
+iter  30 value 1517.300848
+final  value 1517.300787 
+converged
+# weights:  5
+initial  value 1549.721091 
+iter  10 value 1519.221479
+iter  20 value 1518.312831
+final  value 1518.312452 
+converged
+# weights:  13
+initial  value 1590.129821 
+iter  10 value 1521.209958
+iter  20 value 1519.255843
+iter  30 value 1518.332501
+iter  40 value 1518.183134
+iter  50 value 1518.105533
+iter  60 value 1518.069558
+iter  70 value 1518.046939
+final  value 1518.040645 
+converged
+# weights:  21
+initial  value 1836.978087 
+iter  10 value 1520.320692
+iter  20 value 1518.717013
+iter  30 value 1518.461850
+iter  40 value 1518.306829
+iter  50 value 1518.131012
+iter  60 value 1518.018505
+iter  70 value 1517.994499
+iter  80 value 1517.990933
+final  value 1517.990618 
+converged
+# weights:  5
+initial  value 1647.766121 
+iter  10 value 1524.456770
+iter  20 value 1520.308140
+final  value 1520.306070 
+converged
+# weights:  13
+initial  value 1552.331710 
+iter  10 value 1520.269382
+iter  20 value 1519.864151
+iter  30 value 1519.568160
+iter  40 value 1519.544718
+iter  50 value 1519.540534
+final  value 1519.540085 
+converged
+# weights:  21
+initial  value 1589.885805 
+iter  10 value 1521.231483
+iter  20 value 1520.184447
+iter  30 value 1519.621498
+iter  40 value 1519.555788
+iter  50 value 1519.542528
+final  value 1519.537845 
+converged
+# weights:  5
+initial  value 1630.915161 
+iter  10 value 1519.880344
+iter  20 value 1519.792529
+iter  30 value 1519.498619
+iter  40 value 1518.640191
+iter  50 value 1518.485776
+final  value 1518.484864 
+converged
+# weights:  13
+initial  value 1604.749280 
+iter  10 value 1518.365691
+iter  20 value 1518.247636
+iter  20 value 1518.247625
+iter  20 value 1518.247624
+final  value 1518.247624 
+converged
+# weights:  21
+initial  value 1677.887775 
+iter  10 value 1528.623411
+iter  20 value 1523.402663
+iter  30 value 1518.605759
+iter  40 value 1518.254859
+iter  50 value 1518.247647
+final  value 1518.247621 
+converged
+# weights:  5
+initial  value 1596.414567 
+iter  10 value 1518.710079
+iter  20 value 1518.573676
+final  value 1518.572901 
+converged
+# weights:  13
+initial  value 1574.909527 
+iter  10 value 1518.591755
+iter  20 value 1518.363522
+iter  30 value 1518.351379
+iter  40 value 1518.345907
+final  value 1518.345254 
+converged
+# weights:  21
+initial  value 2145.208618 
+iter  10 value 1518.642624
+iter  20 value 1518.423208
+iter  30 value 1518.412450
+iter  40 value 1518.399237
+iter  50 value 1518.376046
+iter  60 value 1518.348215
+iter  70 value 1518.346226
+iter  80 value 1518.345660
+iter  80 value 1518.345648
+iter  80 value 1518.345648
+final  value 1518.345648 
+converged
+# weights:  5
+initial  value 1693.239570 
+iter  10 value 1519.993443
+iter  20 value 1519.311078
+final  value 1519.300400 
+converged
+# weights:  13
+initial  value 1574.219224 
+iter  10 value 1523.105334
+iter  20 value 1519.431170
+iter  30 value 1519.218542
+iter  40 value 1519.143683
+final  value 1519.142808 
+converged
+# weights:  21
+initial  value 1664.036059 
+iter  10 value 1520.008548
+iter  20 value 1519.329847
+iter  30 value 1519.251378
+iter  40 value 1519.211250
+iter  50 value 1519.167656
+iter  60 value 1519.162006
+iter  70 value 1519.157757
+iter  80 value 1519.153561
+final  value 1519.151916 
+converged
+# weights:  5
+initial  value 1677.513278 
+iter  10 value 1524.356679
+iter  20 value 1521.497768
+iter  30 value 1520.382153
+final  value 1520.358439 
+converged
+# weights:  13
+initial  value 1694.979819 
+iter  10 value 1527.003313
+iter  20 value 1520.265314
+iter  30 value 1520.091239
+iter  40 value 1519.907060
+iter  50 value 1519.905245
+final  value 1519.904863 
+converged
+# weights:  21
+initial  value 1550.936328 
+iter  10 value 1520.658026
+iter  20 value 1520.158740
+iter  30 value 1520.045990
+iter  40 value 1519.993763
+iter  50 value 1519.961093
+iter  60 value 1519.948243
+iter  70 value 1519.944336
+final  value 1519.944250 
+converged
+# weights:  5
+initial  value 1576.643417 
+iter  10 value 1522.194922
+final  value 1521.799129 
+converged
+# weights:  13
+initial  value 1816.437141 
+iter  10 value 1529.386031
+iter  20 value 1522.994592
+iter  30 value 1522.539232
+iter  40 value 1522.162823
+iter  50 value 1522.044807
+iter  60 value 1521.983703
+final  value 1521.977534 
+converged
+# weights:  21
+initial  value 1568.564187 
+iter  10 value 1522.516404
+iter  20 value 1522.024479
+iter  30 value 1521.785245
+iter  40 value 1521.751092
+final  value 1521.750922 
+converged
+# weights:  5
+initial  value 1741.725355 
+iter  10 value 1525.164213
+iter  20 value 1518.534241
+iter  30 value 1518.152032
+final  value 1518.121507 
+converged
+# weights:  13
+initial  value 1555.547271 
+iter  10 value 1519.329430
+iter  20 value 1517.914767
+final  value 1517.893129 
+converged
+# weights:  21
+initial  value 1558.018502 
+iter  10 value 1518.366452
+iter  20 value 1517.893125
+iter  20 value 1517.893111
+iter  20 value 1517.893111
+final  value 1517.893111 
+converged
+# weights:  5
+initial  value 1555.981470 
+iter  10 value 1523.552231
+iter  20 value 1522.037694
+iter  30 value 1520.682401
+iter  40 value 1519.339745
+iter  50 value 1518.553375
+iter  60 value 1518.328851
+final  value 1518.251694 
+converged
+# weights:  13
+initial  value 1684.375300 
+iter  10 value 1519.428291
+iter  20 value 1518.318991
+iter  30 value 1518.108712
+iter  40 value 1518.026966
+iter  50 value 1518.014129
+final  value 1518.012413 
+converged
+# weights:  21
+initial  value 1545.449501 
+iter  10 value 1518.950152
+iter  20 value 1518.043268
+iter  30 value 1518.022832
+iter  40 value 1518.016453
+final  value 1518.014842 
+converged
+# weights:  5
+initial  value 1554.421396 
+iter  10 value 1522.545337
+iter  20 value 1519.685557
+iter  30 value 1519.304249
+final  value 1519.300696 
+converged
+# weights:  13
+initial  value 1613.016940 
+iter  10 value 1520.550945
+iter  20 value 1519.165618
+iter  30 value 1519.042234
+iter  40 value 1518.919046
+iter  50 value 1518.917458
+final  value 1518.915843 
+converged
+# weights:  21
+initial  value 1636.602498 
+iter  10 value 1530.626536
+iter  20 value 1519.643816
+iter  30 value 1519.210515
+iter  40 value 1519.109611
+iter  50 value 1519.102193
+iter  60 value 1518.991924
+iter  70 value 1518.976902
+iter  80 value 1518.960984
+iter  90 value 1518.944965
+iter 100 value 1518.930545
+final  value 1518.930545 
+stopped after 100 iterations
+# weights:  5
+initial  value 1624.130845 
+iter  10 value 1531.137719
+iter  20 value 1519.950828
+final  value 1519.950585 
+converged
+# weights:  13
+initial  value 1564.130080 
+iter  10 value 1520.635087
+iter  20 value 1520.023029
+iter  30 value 1519.875958
+iter  40 value 1519.797111
+final  value 1519.796495 
+converged
+# weights:  21
+initial  value 1558.700103 
+iter  10 value 1520.396508
+iter  20 value 1519.894800
+iter  30 value 1519.839268
+iter  40 value 1519.832638
+final  value 1519.831851 
+converged
+# weights:  5
+initial  value 1610.461687 
+iter  10 value 1522.426627
+iter  20 value 1521.952563
+final  value 1521.952510 
+converged
+# weights:  13
+initial  value 1540.595451 
+iter  10 value 1522.460577
+iter  20 value 1522.224349
+iter  30 value 1522.188392
+iter  40 value 1522.102124
+final  value 1522.090555 
+converged
+# weights:  21
+initial  value 1570.263489 
+iter  10 value 1522.877234
+iter  20 value 1522.206479
+iter  30 value 1522.055581
+iter  40 value 1522.034962
+iter  50 value 1521.999578
+iter  60 value 1521.982831
+final  value 1521.982011 
+converged
+# weights:  5
+initial  value 1576.635118 
+iter  10 value 1516.020074
+iter  20 value 1515.415439
+final  value 1515.413514 
+converged
+# weights:  13
+initial  value 1603.480168 
+iter  10 value 1515.639106
+final  value 1515.390958 
+converged
+# weights:  21
+initial  value 1549.950339 
+iter  10 value 1516.125286
+iter  20 value 1515.391011
+final  value 1515.390957 
+converged
+# weights:  5
+initial  value 1581.072729 
+iter  10 value 1515.897069
+iter  20 value 1515.499387
+final  value 1515.494028 
+converged
+# weights:  13
+initial  value 1714.635051 
+iter  10 value 1515.626639
+iter  20 value 1515.526480
+iter  30 value 1515.492694
+iter  40 value 1515.474808
+iter  50 value 1515.472804
+final  value 1515.472717 
+converged
+# weights:  21
+initial  value 1650.910375 
+iter  10 value 1520.140961
+iter  20 value 1515.684349
+iter  30 value 1515.519597
+iter  40 value 1515.489329
+iter  50 value 1515.479836
+iter  60 value 1515.474698
+iter  70 value 1515.472570
+final  value 1515.472537 
+converged
+# weights:  5
+initial  value 1736.564628 
+iter  10 value 1518.847968
+iter  20 value 1516.177447
+final  value 1516.176456 
+converged
+# weights:  13
+initial  value 1560.839511 
+iter  10 value 1517.533446
+iter  20 value 1516.531885
+iter  30 value 1516.298017
+iter  40 value 1516.260345
+iter  50 value 1516.255547
+iter  60 value 1516.250688
+iter  70 value 1516.248628
+iter  70 value 1516.248620
+iter  70 value 1516.248620
+final  value 1516.248620 
+converged
+# weights:  21
+initial  value 1616.112654 
+iter  10 value 1519.649713
+iter  20 value 1516.416104
+iter  30 value 1516.174867
+iter  40 value 1516.164066
+final  value 1516.163794 
+converged
+# weights:  5
+initial  value 1592.194478 
+iter  10 value 1518.322088
+iter  20 value 1516.867567
+final  value 1516.866297 
+converged
+# weights:  13
+initial  value 1673.841597 
+iter  10 value 1519.971083
+iter  20 value 1517.863661
+iter  30 value 1517.429631
+iter  40 value 1517.062663
+iter  50 value 1517.017644
+final  value 1517.016966 
+converged
+# weights:  21
+initial  value 1550.596584 
+iter  10 value 1518.069222
+iter  20 value 1517.491784
+iter  30 value 1517.326697
+iter  40 value 1517.044639
+iter  50 value 1516.966082
+iter  60 value 1516.961204
+final  value 1516.960869 
+converged
+# weights:  5
+initial  value 1766.345865 
+iter  10 value 1522.596798
+iter  20 value 1518.753559
+final  value 1518.667712 
+converged
+# weights:  13
+initial  value 1542.985172 
+iter  10 value 1518.975273
+iter  20 value 1518.702505
+iter  30 value 1518.654332
+final  value 1518.645952 
+converged
+# weights:  21
+initial  value 1593.457905 
+iter  10 value 1519.692968
+iter  20 value 1519.070081
+iter  30 value 1518.898146
+iter  40 value 1518.840203
+iter  50 value 1518.822039
+final  value 1518.819836 
+converged
+# weights:  5
+initial  value 1594.668495 
+iter  10 value 1515.083512
+iter  20 value 1515.010529
+iter  30 value 1514.064722
+iter  40 value 1513.538915
+final  value 1513.527948 
+converged
+# weights:  13
+initial  value 1536.386157 
+iter  10 value 1514.185641
+iter  20 value 1513.452398
+final  value 1513.401957 
+converged
+# weights:  21
+initial  value 1568.762924 
+iter  10 value 1514.332798
+iter  20 value 1513.401926
+final  value 1513.401904 
+converged
+# weights:  5
+initial  value 1558.520089 
+iter  10 value 1515.262051
+iter  20 value 1513.650727
+final  value 1513.650663 
+converged
+# weights:  13
+initial  value 1541.292914 
+iter  10 value 1513.612437
+iter  20 value 1513.509343
+final  value 1513.504329 
+converged
+# weights:  21
+initial  value 1569.537799 
+iter  10 value 1514.736373
+iter  20 value 1513.563560
+iter  30 value 1513.537894
+iter  40 value 1513.530596
+final  value 1513.529304 
+converged
+# weights:  5
+initial  value 1544.649715 
+iter  10 value 1516.738220
+iter  20 value 1514.439059
+final  value 1514.368697 
+converged
+# weights:  13
+initial  value 1739.996142 
+iter  10 value 1514.570099
+iter  20 value 1514.322178
+iter  30 value 1514.293068
+iter  40 value 1514.278052
+iter  50 value 1514.277288
+final  value 1514.277082 
+converged
+# weights:  21
+initial  value 1593.405366 
+iter  10 value 1514.994421
+iter  20 value 1514.570090
+iter  30 value 1514.441231
+iter  40 value 1514.360360
+iter  50 value 1514.336118
+iter  60 value 1514.326986
+iter  70 value 1514.319130
+iter  80 value 1514.316931
+final  value 1514.315620 
+converged
+# weights:  5
+initial  value 1584.382094 
+iter  10 value 1517.837872
+iter  20 value 1515.193214
+iter  30 value 1515.117804
+iter  30 value 1515.117804
+iter  30 value 1515.117804
+final  value 1515.117804 
+converged
+# weights:  13
+initial  value 1745.105309 
+iter  10 value 1515.431205
+iter  20 value 1515.092554
+iter  30 value 1515.061036
+final  value 1515.061018 
+converged
+# weights:  21
+initial  value 1762.416346 
+iter  10 value 1518.611998
+iter  20 value 1515.625693
+iter  30 value 1515.193155
+iter  40 value 1515.143247
+iter  50 value 1515.065643
+iter  60 value 1515.053952
+final  value 1515.053887 
+converged
+# weights:  5
+initial  value 1747.147661 
+iter  10 value 1517.864362
+final  value 1517.059811 
+converged
+# weights:  13
+initial  value 1538.500252 
+iter  10 value 1519.492252
+iter  20 value 1517.522528
+iter  30 value 1517.258882
+iter  40 value 1517.032082
+iter  50 value 1517.027291
+iter  60 value 1517.024272
+iter  70 value 1517.020937
+iter  70 value 1517.020930
+iter  70 value 1517.020930
+final  value 1517.020930 
+converged
+# weights:  21
+initial  value 1599.823758 
+iter  10 value 1518.112007
+iter  20 value 1517.090075
+iter  30 value 1517.046629
+iter  40 value 1517.035779
+iter  50 value 1517.024781
+iter  60 value 1517.018041
+final  value 1517.016837 
+converged
+# weights:  5
+initial  value 1693.008683 
+iter  10 value 1526.091719
+iter  20 value 1518.807261
+iter  30 value 1517.019778
+iter  40 value 1516.926198
+iter  50 value 1516.787959
+final  value 1516.786747 
+converged
+# weights:  13
+initial  value 1682.023667 
+iter  10 value 1533.109190
+iter  20 value 1526.452278
+iter  30 value 1519.067135
+iter  40 value 1517.022113
+iter  40 value 1517.022103
+iter  40 value 1517.022096
+final  value 1517.022096 
+converged
+# weights:  21
+initial  value 1543.200508 
+iter  10 value 1516.984182
+final  value 1516.551030 
+converged
+# weights:  5
+initial  value 1572.619485 
+iter  10 value 1520.335415
+iter  20 value 1516.917300
+final  value 1516.916883 
+converged
+# weights:  13
+initial  value 1590.597040 
+iter  10 value 1519.953638
+iter  20 value 1516.711929
+iter  30 value 1516.690493
+iter  40 value 1516.682133
+iter  50 value 1516.675145
+iter  60 value 1516.674539
+iter  60 value 1516.674539
+final  value 1516.674539 
+converged
+# weights:  21
+initial  value 1796.255611 
+iter  10 value 1516.868230
+iter  20 value 1516.750798
+iter  30 value 1516.729673
+iter  40 value 1516.718546
+iter  50 value 1516.703251
+iter  60 value 1516.682346
+final  value 1516.680286 
+converged
+# weights:  5
+initial  value 1751.559883 
+iter  10 value 1523.193426
+iter  20 value 1518.301980
+final  value 1518.138134 
+converged
+# weights:  13
+initial  value 1566.572426 
+iter  10 value 1518.128451
+iter  20 value 1517.784627
+iter  30 value 1517.732290
+iter  40 value 1517.720704
+iter  50 value 1517.715975
+iter  60 value 1517.714206
+final  value 1517.713681 
+converged
+# weights:  21
+initial  value 1587.405588 
+iter  10 value 1519.867201
+iter  20 value 1517.881581
+iter  30 value 1517.767389
+iter  40 value 1517.746906
+iter  50 value 1517.733686
+iter  60 value 1517.726199
+iter  70 value 1517.723093
+iter  80 value 1517.722493
+iter  80 value 1517.722485
+iter  80 value 1517.722485
+final  value 1517.722485 
+converged
+# weights:  5
+initial  value 1589.350755 
+iter  10 value 1522.071197
+iter  20 value 1518.899915
+final  value 1518.876085 
+converged
+# weights:  13
+initial  value 1650.923901 
+iter  10 value 1520.644657
+iter  20 value 1518.828542
+iter  30 value 1518.714433
+final  value 1518.713145 
+converged
+# weights:  21
+initial  value 1551.767698 
+iter  10 value 1520.112718
+iter  20 value 1518.985184
+iter  30 value 1518.853480
+iter  40 value 1518.807034
+iter  50 value 1518.764252
+iter  60 value 1518.756493
+final  value 1518.754913 
+converged
+# weights:  5
+initial  value 1596.150667 
+iter  10 value 1521.232350
+final  value 1521.113349 
+converged
+# weights:  13
+initial  value 1551.829664 
+iter  10 value 1521.872739
+iter  20 value 1521.366234
+iter  30 value 1521.341292
+final  value 1521.327151 
+converged
+# weights:  21
+initial  value 1569.970178 
+iter  10 value 1522.629265
+iter  20 value 1521.376237
+iter  30 value 1521.080943
+iter  40 value 1521.059245
+iter  50 value 1521.054282
+iter  60 value 1521.050360
+final  value 1521.049991 
+converged
+# weights:  5
+initial  value 1732.166295 
+iter  10 value 1519.669464
+iter  20 value 1518.874846
+iter  30 value 1518.799595
+iter  40 value 1518.792036
+final  value 1518.791541 
+converged
+# weights:  13
+initial  value 1613.036133 
+iter  10 value 1518.668793
+final  value 1518.604385 
+converged
+# weights:  21
+initial  value 1609.877372 
+iter  10 value 1520.400061
+iter  20 value 1518.606978
+final  value 1518.604382 
+converged
+# weights:  5
+initial  value 1652.162023 
+iter  10 value 1519.201835
+iter  20 value 1518.919605
+final  value 1518.913194 
+converged
+# weights:  13
+initial  value 2333.013748 
+iter  10 value 1519.913376
+iter  20 value 1518.845510
+iter  30 value 1518.766693
+iter  40 value 1518.715138
+iter  50 value 1518.707276
+final  value 1518.706357 
+converged
+# weights:  21
+initial  value 1560.286303 
+iter  10 value 1518.768709
+iter  20 value 1518.728190
+iter  30 value 1518.717888
+iter  40 value 1518.711158
+iter  50 value 1518.708540
+iter  60 value 1518.704389
+final  value 1518.704096 
+converged
+# weights:  5
+initial  value 1585.081078 
+iter  10 value 1523.764153
+iter  20 value 1521.492841
+iter  30 value 1519.759796
+final  value 1519.722240 
+converged
+# weights:  13
+initial  value 1633.941775 
+iter  10 value 1524.847889
+iter  20 value 1520.056620
+iter  30 value 1519.793633
+iter  40 value 1519.758636
+iter  50 value 1519.671136
+iter  60 value 1519.654540
+iter  70 value 1519.624503
+iter  80 value 1519.606224
+iter  90 value 1519.598328
+iter 100 value 1519.591792
+final  value 1519.591792 
+stopped after 100 iterations
+# weights:  21
+initial  value 1577.200908 
+iter  10 value 1520.209454
+iter  20 value 1519.660928
+iter  30 value 1519.603477
+iter  40 value 1519.572331
+final  value 1519.538520 
+converged
+# weights:  5
+initial  value 1556.984055 
+iter  10 value 1525.399641
+iter  20 value 1521.131242
+final  value 1520.881782 
+converged
+# weights:  13
+initial  value 1575.943783 
+iter  10 value 1520.606704
+iter  20 value 1520.343859
+final  value 1520.339241 
+converged
+# weights:  21
+initial  value 1567.530369 
+iter  10 value 1521.019355
+iter  20 value 1520.491034
+iter  30 value 1520.442250
+iter  40 value 1520.418173
+iter  50 value 1520.400893
+iter  60 value 1520.390794
+iter  70 value 1520.388404
+final  value 1520.388379 
+converged
+# weights:  5
+initial  value 1547.713602 
+iter  10 value 1523.735196
+final  value 1523.067026 
+converged
+# weights:  13
+initial  value 1911.681679 
+iter  10 value 1531.417075
+iter  20 value 1523.015042
+iter  30 value 1522.528198
+iter  40 value 1522.256522
+final  value 1522.239105 
+converged
+# weights:  21
+initial  value 1588.901192 
+iter  10 value 1524.300085
+iter  20 value 1522.579754
+iter  30 value 1522.464231
+iter  40 value 1522.426432
+iter  50 value 1522.362823
+iter  60 value 1522.354200
+final  value 1522.354120 
+converged
+# weights:  5
+initial  value 1627.164043 
+iter  10 value 1516.479904
+iter  20 value 1516.316295
+final  value 1516.306668 
+converged
+# weights:  13
+initial  value 1621.898053 
+iter  10 value 1530.762651
+iter  20 value 1518.228055
+iter  30 value 1516.445254
+iter  40 value 1516.278997
+final  value 1516.252402 
+converged
+# weights:  21
+initial  value 1635.297547 
+iter  10 value 1516.465793
+final  value 1516.252401 
+converged
+# weights:  5
+initial  value 1550.676750 
+iter  10 value 1524.163011
+iter  20 value 1516.465922
+final  value 1516.461676 
+converged
+# weights:  13
+initial  value 1545.394656 
+iter  10 value 1516.758235
+iter  20 value 1516.536057
+iter  30 value 1516.453283
+iter  40 value 1516.391507
+iter  50 value 1516.379494
+final  value 1516.378225 
+converged
+# weights:  21
+initial  value 1548.230380 
+iter  10 value 1517.365088
+iter  20 value 1516.423155
+iter  30 value 1516.395229
+iter  40 value 1516.390209
+iter  50 value 1516.385372
+iter  60 value 1516.377640
+iter  70 value 1516.374897
+final  value 1516.374745 
+converged
+# weights:  5
+initial  value 1558.439021 
+iter  10 value 1517.869732
+final  value 1517.559438 
+converged
+# weights:  13
+initial  value 1650.261125 
+iter  10 value 1520.805926
+iter  20 value 1518.174878
+iter  30 value 1517.912121
+iter  40 value 1517.487615
+iter  50 value 1517.475201
+iter  60 value 1517.458102
+final  value 1517.452655 
+converged
+# weights:  21
+initial  value 1532.463514 
+iter  10 value 1518.141882
+iter  20 value 1517.468152
+iter  30 value 1517.404519
+iter  40 value 1517.388441
+iter  50 value 1517.374602
+iter  60 value 1517.372744
+final  value 1517.372696 
+converged
+# weights:  5
+initial  value 1558.843135 
+iter  10 value 1519.088527
+final  value 1518.541877 
+converged
+# weights:  13
+initial  value 1594.656969 
+iter  10 value 1520.091846
+iter  20 value 1519.157703
+iter  30 value 1518.869618
+iter  40 value 1518.564305
+iter  50 value 1518.516110
+iter  60 value 1518.457628
+iter  70 value 1518.410431
+iter  80 value 1518.406054
+final  value 1518.405994 
+converged
+# weights:  21
+initial  value 1611.367849 
+iter  10 value 1523.194889
+iter  20 value 1519.532410
+iter  30 value 1519.052003
+iter  40 value 1518.646520
+iter  50 value 1518.404559
+iter  60 value 1518.360460
+iter  70 value 1518.358815
+iter  80 value 1518.356611
+final  value 1518.356529 
+converged
+# weights:  5
+initial  value 1682.070288 
+iter  10 value 1521.076497
+iter  20 value 1520.161555
+iter  20 value 1520.161555
+iter  20 value 1520.161555
+final  value 1520.161555 
+converged
+# weights:  13
+initial  value 1570.457568 
+iter  10 value 1523.321599
+iter  20 value 1521.366861
+iter  30 value 1520.415852
+iter  40 value 1520.163903
+final  value 1520.150834 
+converged
+# weights:  21
+initial  value 1534.145911 
+iter  10 value 1521.067186
+iter  20 value 1520.572518
+iter  30 value 1520.384418
+iter  40 value 1520.375964
+final  value 1520.375809 
+converged
+# weights:  5
+initial  value 1736.790861 
+iter  10 value 1520.393189
+iter  20 value 1517.996871
+iter  30 value 1517.840557
+iter  30 value 1517.840554
+iter  30 value 1517.840554
+final  value 1517.840554 
+converged
+# weights:  13
+initial  value 1680.602578 
+iter  10 value 1520.829818
+iter  20 value 1517.656637
+final  value 1517.607174 
+converged
+# weights:  21
+initial  value 1755.990361 
+iter  10 value 1518.452114
+final  value 1517.607161 
+converged
+# weights:  5
+initial  value 1675.296803 
+iter  10 value 1520.378272
+iter  20 value 1518.540965
+iter  30 value 1517.986879
+final  value 1517.985502 
+converged
+# weights:  13
+initial  value 1556.509249 
+iter  10 value 1520.035891
+iter  20 value 1517.898279
+iter  30 value 1517.797192
+iter  40 value 1517.750767
+iter  50 value 1517.743484
+iter  60 value 1517.742136
+iter  70 value 1517.737607
+final  value 1517.737574 
+converged
+# weights:  21
+initial  value 1550.750395 
+iter  10 value 1518.325217
+iter  20 value 1517.756331
+iter  30 value 1517.737195
+iter  40 value 1517.733853
+final  value 1517.733386 
+converged
+# weights:  5
+initial  value 1817.703232 
+iter  10 value 1519.565331
+iter  20 value 1518.925980
+final  value 1518.925836 
+converged
+# weights:  13
+initial  value 1916.728600 
+iter  10 value 1539.811458
+iter  20 value 1523.460830
+iter  30 value 1519.172863
+iter  40 value 1518.977624
+iter  50 value 1518.855558
+iter  60 value 1518.824273
+iter  70 value 1518.812041
+iter  80 value 1518.780818
+iter  90 value 1518.767130
+final  value 1518.765899 
+converged
+# weights:  21
+initial  value 1555.282483 
+iter  10 value 1520.293766
+iter  20 value 1518.944437
+iter  30 value 1518.863401
+iter  40 value 1518.817024
+iter  50 value 1518.769405
+iter  60 value 1518.751757
+iter  70 value 1518.743100
+iter  80 value 1518.739788
+final  value 1518.737861 
+converged
+# weights:  5
+initial  value 1921.062007 
+iter  10 value 1529.091849
+iter  20 value 1520.142252
+final  value 1520.116492 
+converged
+# weights:  13
+initial  value 1592.369158 
+iter  10 value 1520.177166
+iter  20 value 1519.790210
+iter  30 value 1519.701125
+iter  40 value 1519.664592
+final  value 1519.663436 
+converged
+# weights:  21
+initial  value 1599.515065 
+iter  10 value 1531.272766
+iter  20 value 1520.248052
+iter  30 value 1519.837711
+iter  40 value 1519.695845
+iter  50 value 1519.654523
+iter  60 value 1519.651198
+final  value 1519.651139 
+converged
+# weights:  5
+initial  value 1563.771452 
+iter  10 value 1525.012701
+iter  20 value 1521.976956
+final  value 1521.835120 
+converged
+# weights:  13
+initial  value 1560.600491 
+iter  10 value 1525.288374
+iter  20 value 1522.855087
+iter  30 value 1521.831136
+iter  40 value 1521.812527
+iter  50 value 1521.811955
+final  value 1521.811253 
+converged
+# weights:  21
+initial  value 1549.253050 
+iter  10 value 1523.021624
+iter  20 value 1522.250103
+iter  30 value 1522.038062
+iter  40 value 1522.011577
+iter  50 value 1521.993693
+final  value 1521.990679 
+converged
+# weights:  5
+initial  value 1567.488607 
+iter  10 value 1522.612179
+iter  20 value 1517.393182
+final  value 1517.323082 
+converged
+# weights:  13
+initial  value 1730.549253 
+iter  10 value 1522.652517
+iter  20 value 1517.319429
+final  value 1517.305155 
+converged
+# weights:  21
+initial  value 1570.076938 
+iter  10 value 1518.374233
+iter  20 value 1517.307136
+final  value 1517.305156 
+converged
+# weights:  5
+initial  value 1641.845733 
+iter  10 value 1520.836135
+iter  20 value 1517.410515
+final  value 1517.406039 
+converged
+# weights:  13
+initial  value 1790.636520 
+iter  10 value 1518.598173
+iter  20 value 1517.464696
+iter  30 value 1517.408658
+iter  40 value 1517.393992
+iter  50 value 1517.389527
+final  value 1517.389461 
+converged
+# weights:  21
+initial  value 1585.333222 
+iter  10 value 1519.268767
+iter  20 value 1517.473077
+iter  30 value 1517.437458
+iter  40 value 1517.428717
+iter  50 value 1517.416472
+iter  60 value 1517.401477
+iter  70 value 1517.397084
+final  value 1517.396995 
+converged
+# weights:  5
+initial  value 1585.354929 
+iter  10 value 1518.167397
+iter  20 value 1518.104395
+iter  20 value 1518.104386
+iter  20 value 1518.104386
+final  value 1518.104386 
+converged
+# weights:  13
+initial  value 1632.719395 
+iter  10 value 1519.710448
+iter  20 value 1518.460209
+iter  30 value 1518.273096
+iter  40 value 1518.102066
+final  value 1518.097353 
+converged
+# weights:  21
+initial  value 1696.526824 
+iter  10 value 1520.079936
+iter  20 value 1518.588416
+iter  30 value 1518.344845
+iter  40 value 1518.223801
+iter  50 value 1518.173357
+iter  60 value 1518.168935
+iter  70 value 1518.168019
+final  value 1518.167914 
+converged
+# weights:  5
+initial  value 1545.953108 
+iter  10 value 1521.862375
+iter  20 value 1519.204669
+final  value 1519.191986 
+converged
+# weights:  13
+initial  value 1538.648695 
+iter  10 value 1519.532533
+iter  20 value 1519.152871
+iter  30 value 1519.111512
+iter  40 value 1519.029647
+iter  50 value 1519.002559
+iter  60 value 1518.989142
+final  value 1518.988885 
+converged
+# weights:  21
+initial  value 1613.684986 
+iter  10 value 1520.869893
+iter  20 value 1519.510548
+iter  30 value 1519.101599
+iter  40 value 1519.042461
+iter  50 value 1518.949773
+iter  60 value 1518.936972
+final  value 1518.931427 
+converged
+# weights:  5
+initial  value 1545.148847 
+iter  10 value 1520.904821
+final  value 1520.593446 
+converged
+# weights:  13
+initial  value 1562.546505 
+iter  10 value 1523.266213
+iter  20 value 1521.382737
+iter  30 value 1521.024195
+iter  40 value 1520.938496
+final  value 1520.937693 
+converged
+# weights:  21
+initial  value 1783.562187 
+iter  10 value 1523.657360
+iter  20 value 1521.434730
+iter  30 value 1521.206717
+iter  40 value 1521.075392
+iter  50 value 1520.869749
+iter  60 value 1520.828705
+iter  70 value 1520.814492
+final  value 1520.814349 
+converged
+# weights:  5
+initial  value 1789.885674 
+iter  10 value 1694.675051
+iter  20 value 1690.100844
+final  value 1690.034804 
+converged

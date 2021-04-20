@@ -1,0 +1,15 @@
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+✔ ggplot2 3.3.3     ✔ purrr   0.3.4
+✔ tibble  3.0.4     ✔ dplyr   1.0.4
+✔ tidyr   1.1.2     ✔ stringr 1.4.0
+✔ readr   1.4.0     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Error in .External2(C_X11, paste0("tiff::", comp, ":", filename), g$width,  : 
+  unable to start device TIFF
+Calls: tiff
+In addition: Warning message:
+In tiff("SNP_distribution_histogram.tiff", width = 862, height = 660,  :
+  unable to open connection to X11 display ''
+Execution halted

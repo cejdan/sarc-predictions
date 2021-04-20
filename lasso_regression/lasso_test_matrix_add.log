@@ -1,0 +1,25 @@
+PLINK v1.90b3w 64-bit (3 Sep 2015)
+Options in effect:
+  --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test
+  --extract /s/cgm/Cejda/_thesis/snplist2_lasso/top_484_lasso_snps.txt
+  --out lasso_test_matrix_add
+  --recode A
+
+Hostname: walnut
+Working directory: /s/cgm/Cejda/_thesis/snplist2_lasso
+Start time: Tue Apr  6 12:19:24 2021
+
+Random number seed: 1617711564
+3935 MB RAM detected; reserving 1967 MB for main workspace.
+7723467 variants loaded from .bim file.
+412 people (113 males, 299 females) loaded from .fam.
+412 phenotype values loaded from .fam.
+--extract: 484 variants remaining.
+Using 1 thread.
+Before main variant filters, 187 founders and 225 nonfounders present.
+Calculating allele frequencies... done.
+484 variants and 412 people pass filters and QC.
+Among remaining phenotypes, 183 are cases and 229 are controls.
+--recode A to lasso_test_matrix_add.raw ... done.
+
+End time: Tue Apr  6 12:19:33 2021

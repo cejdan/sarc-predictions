@@ -1,0 +1,71 @@
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+✔ ggplot2 3.3.3     ✔ purrr   0.3.4
+✔ tibble  3.0.4     ✔ dplyr   1.0.4
+✔ tidyr   1.1.2     ✔ stringr 1.4.0
+✔ readr   1.4.0     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+randomForest 4.6-14
+Type rfNews() to see new features/changes/bug fixes.
+
+Attaching package: ‘randomForest’
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
+
+The following object is masked from ‘package:ggplot2’:
+
+    margin
+
+Loading required package: lattice
+
+Attaching package: ‘caret’
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Compare row 3  and column  4 with corr  1 
+  Means:  0.83 vs 0.691 so flagging column 3 
+Compare row 4  and column  5 with corr  1 
+  Means:  0.813 vs 0.664 so flagging column 4 
+Compare row 5  and column  6 with corr  1 
+  Means:  0.793 vs 0.631 so flagging column 5 
+Compare row 6  and column  7 with corr  1 
+  Means:  0.767 vs 0.592 so flagging column 6 
+Compare row 7  and column  8 with corr  1 
+  Means:  0.733 vs 0.543 so flagging column 7 
+Compare row 8  and column  9 with corr  1 
+  Means:  0.689 vs 0.482 so flagging column 8 
+Compare row 9  and column  10 with corr  0.998 
+  Means:  0.626 vs 0.403 so flagging column 9 
+Compare row 10  and column  11 with corr  0.995 
+  Means:  0.534 vs 0.3 so flagging column 10 
+Compare row 11  and column  12 with corr  0.998 
+  Means:  0.381 vs 0.17 so flagging column 11 
+All correlations <= 0.95 
+[1] 0
+line search fails -0.1470522 0.1795477 -3.39691e-06 -1.013378e-05 2.323404e-08 3.112185e-08 -3.94306e-13line search fails -0.1531937 0.177478 -1.793561e-06 -1.012376e-05 1.885924e-08 2.863548e-08 -3.237238e-13line search fails -0.1401197 0.1816255 -5.334724e-06 -1.066019e-05 2.713042e-08 3.268556e-08 -4.931676e-13Warning messages:
+1: In method$predict(modelFit = modelFit, newdata = newdata, submodels = param) :
+  kernlab class prediction calculations failed; returning NAs
+2: In method$prob(modelFit = modelFit, newdata = newdata, submodels = param) :
+  kernlab class probability calculations failed; returning NAs
+3: In method$predict(modelFit = modelFit, newdata = newdata, submodels = param) :
+  kernlab class prediction calculations failed; returning NAs
+4: In method$prob(modelFit = modelFit, newdata = newdata, submodels = param) :
+  kernlab class probability calculations failed; returning NAs
+5: In nominalTrainWorkflow(x = x, y = y, wts = weights, info = trainInfo,  :
+  There were missing values in resampled performance measures.
