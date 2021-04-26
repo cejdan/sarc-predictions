@@ -10,6 +10,7 @@ This is the repository for all code used in the thesis project "Predicting sarco
 
     Change log - 2021-04-26:
     * Updated README.md
+    * Updated organization of many files to make access easier.
 
     Change log - 2021-04-20:
     * Added majority of the files.
