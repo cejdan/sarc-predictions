@@ -1,0 +1,65 @@
+
+# Basing this on exactly what I did with the fathmm scores. The blend script is slightly different but otherwise everything is almost the same.
+# Check the other doc for more notes.
+
+sbatch -A montgomery -J merge --mem 1500 --wrap "Rscript blend_fathmm_and_logistic.R"
+
+# Sort based on logbase2, keep the header.
+awk 'NR == 1; NR > 1 {print $0 | "sort -g -k 6 -r"}' FATHMM_Logistic_blend.tsv > fathmm_logistic_log2_sort.tsv
+
+head -11 fathmm_logistic_log2_sort.tsv > fathmm_pval_top10.tsv
+head -101 fathmm_logistic_log2_sort.tsv > fathmm_pval_top100.tsv
+head -201 fathmm_logistic_log2_sort.tsv > fathmm_pval_top200.tsv
+head -501 fathmm_logistic_log2_sort.tsv > fathmm_pval_top500.tsv
+head -1001 fathmm_logistic_log2_sort.tsv > fathmm_pval_top1000.tsv
+head -2001 fathmm_logistic_log2_sort.tsv > fathmm_pval_top2000.tsv
+
+
+awk '{if(NR > 1) print $1}' fathmm_pval_top10.tsv > top10_SNPs.txt
+awk '{if(NR > 1) print $1}' fathmm_pval_top100.tsv > top100_SNPs.txt
+awk '{if(NR > 1) print $1}' fathmm_pval_top200.tsv > top200_SNPs.txt
+awk '{if(NR > 1) print $1}' fathmm_pval_top500.tsv > top500_SNPs.txt
+awk '{if(NR > 1) print $1}' fathmm_pval_top1000.tsv > top1000_SNPs.txt
+awk '{if(NR > 1) print $1}' fathmm_pval_top2000.tsv > top2000_SNPs.txt
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/fathmm_pval/top10_SNPs.txt --recodeA -out fathmm_pval_top_10_matrix_train
+sed 's/#/num/g' fathmm_pval_top_10_matrix_train.raw > fathmm_pval_top_10_matrix_train_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/fathmm_pval/top100_SNPs.txt --recodeA -out fathmm_pval_top_100_matrix_train
+sed 's/#/num/g' fathmm_pval_top_100_matrix_train.raw > fathmm_pval_top_100_matrix_train_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/fathmm_pval/top200_SNPs.txt --recodeA -out fathmm_pval_top_200_matrix_train
+sed 's/#/num/g' fathmm_pval_top_200_matrix_train.raw > fathmm_pval_top_200_matrix_train_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/fathmm_pval/top500_SNPs.txt --recodeA -out fathmm_pval_top_500_matrix_train
+sed 's/#/num/g' fathmm_pval_top_500_matrix_train.raw > fathmm_pval_top_500_matrix_train_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/fathmm_pval/top1000_SNPs.txt --recodeA -out fathmm_pval_top_1000_matrix_train
+sed 's/#/num/g' fathmm_pval_top_1000_matrix_train.raw > fathmm_pval_top_1000_matrix_train_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/fathmm_pval/top2000_SNPs.txt --recodeA -out fathmm_pval_top_2000_matrix_train
+sed 's/#/num/g' fathmm_pval_top_2000_matrix_train.raw > fathmm_pval_top_2000_matrix_train_clean.raw
+
+
+# Test data
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/fathmm_pval/top10_SNPs.txt --recodeA -out fathmm_pval_top_10_matrix_test
+sed 's/#/num/g' fathmm_pval_top_10_matrix_test.raw > fathmm_pval_top_10_matrix_test_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/fathmm_pval/top100_SNPs.txt --recodeA -out fathmm_pval_top_100_matrix_test
+sed 's/#/num/g' fathmm_pval_top_100_matrix_test.raw > fathmm_pval_top_100_matrix_test_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/fathmm_pval/top200_SNPs.txt --recodeA -out fathmm_pval_top_200_matrix_test
+sed 's/#/num/g' fathmm_pval_top_200_matrix_test.raw > fathmm_pval_top_200_matrix_test_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/fathmm_pval/top500_SNPs.txt --recodeA -out fathmm_pval_top_500_matrix_test
+sed 's/#/num/g' fathmm_pval_top_500_matrix_test.raw > fathmm_pval_top_500_matrix_test_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/fathmm_pval/top1000_SNPs.txt --recodeA -out fathmm_pval_top_1000_matrix_test
+sed 's/#/num/g' fathmm_pval_top_1000_matrix_test.raw > fathmm_pval_top_1000_matrix_test_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/fathmm_pval/top2000_SNPs.txt --recodeA -out fathmm_pval_top_2000_matrix_test
+sed 's/#/num/g' fathmm_pval_top_2000_matrix_test.raw > fathmm_pval_top_2000_matrix_test_clean.raw
+
+# Great. Time to move to R to do the rest.

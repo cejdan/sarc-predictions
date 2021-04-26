@@ -1,0 +1,83 @@
+# Going to blend the cadd scores and the p-val 
+# Using the formula:
+log_base_c(1/p-val) + (1/d)*cadd_score
+
+# Where c = 2  and d = 1
+# This formula is a balance of p-value and cadd score. If we increase the log base, the cadd_score importance increases, p-val importance decreases.
+# If we increase the value of d, the cadd score importance decreases.
+
+# As-is, it looks like a good balance of functional score and association.
+
+# Did the merging with an R script run through the server. Need at least 1.5GB (1500 MB) to hold all the dataframes in memory at once. Too hard on my personal PC.
+sbatch -A montgomery -J merge --mem 1500 --wrap "Rscript blend_cadd_and_logistic.R"
+ 
+
+# With that output, I ran the following sort command inside an awk command.
+# This sorts the logbase2 output but KEEPS the column headers. Kinda neat!
+
+awk 'NR == 1; NR > 1 {print $0 | "sort -g -k 6 -r"}' CADD_Logistic_blend.tsv > cadd_logistic_log2_sort.tsv
+
+# Take the top 10, 100, 500, 1000 SNPs as before, and merge your new calculated score with the allele counts.
+# I am confident that if person has 2 A1 alleles, multiply the score by 2.
+
+head -11 cadd_logistic_log2_sort.tsv > cadd_pval_top10.tsv
+head -101 cadd_logistic_log2_sort.tsv > cadd_pval_top100.tsv
+head -201 cadd_logistic_log2_sort.tsv > cadd_pval_top200.tsv
+head -501 cadd_logistic_log2_sort.tsv > cadd_pval_top500.tsv
+head -1001 cadd_logistic_log2_sort.tsv > cadd_pval_top1000.tsv
+head -2001 cadd_logistic_log2_sort.tsv > cadd_pval_top2000.tsv
+
+
+awk '{if(NR > 1) print $1}' cadd_pval_top10.tsv > top10_SNPs.txt
+awk '{if(NR > 1) print $1}' cadd_pval_top100.tsv > top100_SNPs.txt
+awk '{if(NR > 1) print $1}' cadd_pval_top200.tsv > top200_SNPs.txt
+awk '{if(NR > 1) print $1}' cadd_pval_top500.tsv > top500_SNPs.txt
+awk '{if(NR > 1) print $1}' cadd_pval_top1000.tsv > top1000_SNPs.txt
+awk '{if(NR > 1) print $1}' cadd_pval_top2000.tsv > top2000_SNPs.txt
+
+
+# Now I've got my SNPs, I need to extract them with plink.
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/cadd_pval/top10_SNPs.txt --recodeA -out cadd_pval_top_10_matrix_train
+sed 's/#/num/g' cadd_pval_top_10_matrix_train.raw > cadd_pval_top_10_matrix_train_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/cadd_pval/top100_SNPs.txt --recodeA -out cadd_pval_top_100_matrix_train
+sed 's/#/num/g' cadd_pval_top_100_matrix_train.raw > cadd_pval_top_100_matrix_train_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/cadd_pval/top200_SNPs.txt --recodeA -out cadd_pval_top_200_matrix_train
+sed 's/#/num/g' cadd_pval_top_200_matrix_train.raw > cadd_pval_top_200_matrix_train_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/cadd_pval/top500_SNPs.txt --recodeA -out cadd_pval_top_500_matrix_train
+sed 's/#/num/g' cadd_pval_top_500_matrix_train.raw > cadd_pval_top_500_matrix_train_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/cadd_pval/top1000_SNPs.txt --recodeA -out cadd_pval_top_1000_matrix_train
+sed 's/#/num/g' cadd_pval_top_1000_matrix_train.raw > cadd_pval_top_1000_matrix_train_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/cadd_pval/top2000_SNPs.txt --recodeA -out cadd_pval_top_2000_matrix_train
+sed 's/#/num/g' cadd_pval_top_2000_matrix_train.raw > cadd_pval_top_2000_matrix_train_clean.raw
+
+
+# Test data
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/cadd_pval/top10_SNPs.txt --recodeA -out cadd_pval_top_10_matrix_test
+sed 's/#/num/g' cadd_pval_top_10_matrix_test.raw > cadd_pval_top_10_matrix_test_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/cadd_pval/top100_SNPs.txt --recodeA -out cadd_pval_top_100_matrix_test
+sed 's/#/num/g' cadd_pval_top_100_matrix_test.raw > cadd_pval_top_100_matrix_test_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/cadd_pval/top200_SNPs.txt --recodeA -out cadd_pval_top_200_matrix_test
+sed 's/#/num/g' cadd_pval_top_200_matrix_test.raw > cadd_pval_top_200_matrix_test_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/cadd_pval/top500_SNPs.txt --recodeA -out cadd_pval_top_500_matrix_test
+sed 's/#/num/g' cadd_pval_top_500_matrix_test.raw > cadd_pval_top_500_matrix_test_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/cadd_pval/top1000_SNPs.txt --recodeA -out cadd_pval_top_1000_matrix_test
+sed 's/#/num/g' cadd_pval_top_1000_matrix_test.raw > cadd_pval_top_1000_matrix_test_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/cadd_pval/top2000_SNPs.txt --recodeA -out cadd_pval_top_2000_matrix_test
+sed 's/#/num/g' cadd_pval_top_2000_matrix_test.raw > cadd_pval_top_2000_matrix_test_clean.raw
+
+# Great. Time to move to R to do the rest.
+

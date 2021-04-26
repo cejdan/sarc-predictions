@@ -1,0 +1,716 @@
+2021-02-02
+
+Goal tonight is to extract the test patients from the .bed and .bam and .fam files that we 
+use to run our regressions.
+
+We DON'T want to use any of these people in the GWAS SNP extraction because they will pollute
+our ability to accurately test the machine learning. We don't want to artifically inflate certain
+SNPs because test people were mixed in during that step. They need to be "true" test cases.
+
+SO, how do we do that?
+Visit http://zzz.bwh.harvard.edu/plink/reference.shtml#options
+to see the list of PLINK options.
+
+We will need:
+--bfile
+--remove {FID IID list .txt file}
+
+I will need to generate this list of individuals randomly.
+To do so, I need a list of FID and IIDs. Could sample randomly in R. My plan is to keep 10% of
+the patients out as tests. Keep a balanced mix of case and control.
+
+The AAdemo file has all the patients. I think anyway. Try the following command:
+shuf -n 
+
+I mistakenly thought column 3 in AAdemo was phenotype. No, it is Sex.
+awk -v OFS='\t' '{if ($3 == 2) print $0}' AAdemo.txt > AAsarc.txt
+awk -v OFS='\t' '{if ($3 == 1) print $0}' AAdemo.txt > AAcontrol.txt
+
+There are 819 males and 2093 females. = 2912 people
+Ok there are some disparities.
+The AAdemo.txt file has 2912 people, 819 males, 2093 females.
+
+The /s/cgm/Pexant/Scadding_stage/AA_wgs_imp_QCd .fam file has 2915 people, 818 males, 2097 females
+1272 cases and 1643 controls (2,915) -- 3 more people than AAdemo.txt
+1 less male somehow and 4 more females.
+
+The Master_amass_phenotype_data_V2_20210119.xlxs file has 2962 people with Genotype data.
+1247 are controls. 1715 cases. 2962 total. It is very likely that the 47 people got QC'd out
+somehow. Or they were added recently? Worth asking Nathan.
+
+I need to resolve these discrepencies. At the very least, we should have Principle Components
+calculated for all people in the .fam file. Not sure why that's not the case. I can live with
+the missing 47 people, especially since they probably got excluded for QC reasons.
+
+Should be able to correct the PCA issue using Plink as well. Turns out its the best tool ever.
+Use the flags:
+--bfile /s/cgm/Pezant/Scadding_stage/AA_wgs_imp_QCd
+--pca 4
+--out AA_PCA.txt
+
+The full command is:
+ml plink2
+sbatch -A montgomery --partition serial -n 1 -c 1 --mem 100 --wrap "plink --bfile /s/cgm/Pezant/Scadding_stage/AA_wgs_imp_QCd --pca 4 --out AA_PCA.txt"
+
+That should fix our issue with the PC and the AAdemo.txt file. I'll need to double-check tomorrow
+when slurm finishes the run. I estimate it'll take about 10-15 minutes on the cluster, but it's
+pretty late so I am heading to bed for now! I'll resume in the morning.
+
+
+2021-02-03 7:00am
+Looks like the PCA function worked. The only thing is that the Sex column was not added.
+Not sure if this will matter or not. Still, we have 2915 people in the PCA file now.
+File name is AA_PCA.txt.eigenvec
+
+In any case, my goal is still to generate a sample of test cases and test controls.
+Plink can extract specific people but you need their FID and IIDs. I can extract from Excel.
+
+I can certainly use the .fam file directly (phenotype is listed as the final column)
+to do my sampling. I will be sampling from the 2915 people in that case.
+
+However, 737 people have IIDs in the .fam file that are not found in the master historical AA spreadsheet
+I sent a message to Nathan to see if he can help resolve this complication. 
+Maybe we can get a more complete dataset with all 2962 people?
+
+I will await his response. Worst-case I can sample from the .fam file.
+
+
+Thursday 2021-02-04 6:50am
+Nathan got back to me and pointed me to the more "raw" version of the plink genotyping dat.a
+He said to go to:
+smb://jetsam/scratch/cgm/Pezant/Imputed_wgs_merged/wgs_imp_merged_updatedfam.fam 
+
+in that folder there are several .bim, .bam, .fam files, each with a different layer of pre-processing
+All I care about for now is the "wgs_imp_merged_updatedfam" files
+These SNPs come from QCd TopMed imputation, then all real (observed) data is overlayed if it exists.
+Nathan said this: "4) our observed WGS data (for the subjects that have been sequenced) was overlayed. i.e. We replaced any imputed values with observed values when available"
+
+There are 2918 people in this dataset. However virtually no QC has been done (other than imputation QC)
+So I will need to QC this myself with Plink.
+
+Plink offers several options. Really it would be great if I could remove non-100% genotyped SNPs
+because that would make downstream ML MUCH simplier.
+
+Step 1, remove PATIENTS with <90% genotyping rate (10% missing rate).
+--mind 0.1
+
+Step 2, remove SNPs with any missing values. This is extremely strict, might relax here.
+The odds that a non-fully genotyped SNP get selected via regression is low anyway right?  
+How many SNPs get removed here?
+--geno 0.0
+
+Step 3, remove minor alleles with < 0.01 frequency (1%)
+--maf 0.01
+
+Step 4, hardy-weinburg test failures
+Remove variants that reach 0.001 significance on hardy-weinburg equilibrium tests
+Not totally sure yet what this step does.
+--hwe 0.001
+
+Step 5, remove mendellian errors
+This means that if a family member has two parents listed, they cannot have a
+SNP that didn't come from the parents (it's possible we are excluding de-novo mutations)
+but more likely we are just removing problematic reads or imputations.
+--me 0.05 0.1
+
+Ok, that all should work, in theory.... however we have a pretty serious problem with the
+wgs_imp_merged_updatedfam.bed file.
+
+When I try to access the file, I get the error:
+error reading '/s/cgm/Pezant/Imputed_wgs_merged/wgs_imp_merged_updatedfam.bed': Input/output error
+
+Reading on the formus suggests that this is due to a failed physical disk.
+I'm certain there are backups but still it's a problem.
+
+I attempted to copy the file and reached byte 27,979,153,408 out of a total of 51,018,014,433 bytes
+It's possible byte 27,979,153,409 and beyond belong on a disk or disks that have failed.
+I reached out to Nathan for help resolving the issue. We'll see what happens! Stay tuned.
+
+
+2021-02-05
+Nathan rebuilt the file with the following code:
+plink --bfile /s/cgm/Pezant/Imputed_wgs_merged/wgs_imp_merged_updatedfam --maf 0.05 --hwe 0.0001 --me 0.05 0.1 --geno 0.05 --make-bed --out AA_wgs_imp_QCd
+
+It seemed to work, he ran some basic analysis and it ran successfully. So I can proceed. I want to do the same filtering as Nathan but make the genotyping rate more strict (100%)
+
+I ran the following code, just to see how many SNPs I wind up losing. If it's above a million I might proceed. If not, I'll probably have to reconsider:
+plink --bfile /s/cgm/Pezant/Imputed_wgs_merged/wgs_imp_merged_updatedfam --mind 0.1 --geno 0 --maf 0.01 --hwe 0.001 --me 0.05 0.1 --make-bed --out qc
+
+Ok, yeah this is WAY too strict. We only have 636 people remaining after this, but the good thing is we have 15723194 variants, more than I expected. We lost a lot due to Hardy weinburg exact test
+
+Let's retry this with no --mind cutoff (set to 1.0), and less severe hwe cutoff.
+
+plink --bfile /s/cgm/Pezant/Imputed_wgs_merged/wgs_imp_merged_updatedfam --mind 1 --geno 0 --maf 0.01 --hwe 0.0001 --me 0.05 0.1 --make-bed --out qc
+
+Results: Start with 69mil SNPs, 10 mil SNPs removed due to --geno 0, 19 thousand SNPs removed due to --hwe, 45 mil removed due to --maf 0.01, 
+1.9 mil Mendel errors detected, 227 SNPs and 3 PEOPLE removed removed to due --me (probably 1 family trio)
+
+We end up with 13.7 mil SNPs and remaining. Surprisingly great number actually. About 20% of SNPs were kept. Proceed with this dataset. I realized Nathan ran a
+--maf cutoff of 0.05 (5%) which is actually much more strict than mine, at 0.01 (1%). He lost 53 mil SNPs to his --maf cutoff and wound up with 8.4 mil remaining.
+
+Lets actually try it one more time with the 0.05 maf cutoff.
+plink --bfile /s/cgm/Pezant/Imputed_wgs_merged/wgs_imp_merged_updatedfam --mind 1 --geno 0 --maf 0.05 --hwe 0.0001 --me 0.05 0.1 --make-bed --out AA_wgs_imp_strict_QC
+
+Results: 51 mil removed due to -maf 0.05
+7.7 mil SNPs and 2915 people remain. Surprisingly not much worse than Nathan's 8.4 mil. Thought --geno 0 would be worse but it works out.
+
+Ok I will go with this as my working dataset.
+
+
+2021-02-06 
+Now I need to extract the Test and Train datasets. I will need to randomly sample... probably need to think about how to deal with Families.
+Do I want to split up families or keep them together? The more independent families the more "real" my test dataset is. I will want to sample FAMILIES, not individuals.
+Hold back a random 10% of non-sarc families, and 10% of sarc families, including all children and siblings etc.
+Sample based on FID in other words.
+
+I'm gonna import the .fam file into R and do the sampling and subsetting there.
+
+So I loaded the data into R, I had to open in Notepad++ first and change the # symbol to "num", (R wasn't able to read it as-is).
+I split the data by family, and wound up with 229 controls, 183 cases (n=412) from a total of 227 families for TESTING (not to be used in regression analysis etc.)
+Wound up with 1414 controls, 1089 cases (n=2503) from a total of 1742 families for testing. No families or individuals overlap. No families were broken up.
+
+Exported just the FID and IID from the train and test samples. Had to open them in Notepad++ again and delete the column headers. These files are saved as:
+TEST_AAhist_IDs.txt
+TRAIN_AAhist_IDs.txt
+
+Moved them on to the server. Needed to change the line endings to Unix line endings, with the following command:
+dos2unix TEST_AAhist_IDs.txt
+dos2unix TRAIN_AAhist_IDs.txt
+
+Ok awesome. Now that's done, I want to create a new set of .bed, .bin, and .fam files with Plink. These will be the only files I use for regression analysis from here on.
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_wgs_imp_strict_QC --keep TRAIN_AAhist_IDs.txt --make-bed --out AA_train
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_wgs_imp_strict_QC --keep TEST_AAhist_IDs.txt --make-bed --out AA_test
+
+Ok, that worked great. Got a new set of .bin,.bam, .fam files now called AA_train. With exactly 2503 people remaining, 1414 controls and 1089 cases as I calculated above.
+
+We need to also calulate a new set of Principle Components to account for correlated ancestry on just the new dataset.
+
+sbatch -A montgomery --partition serial -n 1 -c 1 --mem 100 --wrap "plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --pca 4 --out AA_train_PCA"
+
+we can use the file generated 
+AA_train_PCA.eigevec
+as our covar file
+
+Next, let's run some actual regression models.
+
+
+2021-02-09
+Start with the basic logistic regression modified with the PCA covariates, like we normally do.
+
+
+Before running the script, need to download and install qqman:
+
+ml rstudio
+R
+install.packages("qqman")
+# R will install the package into:X
+/net/qlotsam.lan.omrf.org/qlotsam/rc/homes/cejdan/R/x86_64-pc-linux-gnu-library/4.0
+
+Need to point to this library in the R script.
+########################################################################################## script file begin
+#!/bin/bash -l
+
+#SBATCH --output "log_functional_script.txt"
+#SBATCH -A montgomery
+#SBATCH --partition serial
+#SBATCH -n 1
+#SBATCH -c 1
+#SBATCH --time 10:0:0
+#SBATCH --mem 100
+
+ml slurm
+ml R
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --covar /s/cgm/Cejda/_thesis/AAdata_QC/AA_train_PCA.eigenvec --logistic hide-covar --out list1
+
+awk 'NR==1; NR>1 {if($9<0.001 && $9!="NA") print $0}' list1.assoc.logistic > list1_clean.assoc.logistic
+
+Rscript --vanilla manhattan.R $PWD list1_clean.assoc.logistic
+
+awk -v OFS='\t' 'NR==1; NR>1 {print $2}' list1.assoc.logistic | sort -rn | head -n 10 > logistic_top_10.txt
+awk -v OFS='\t' 'NR==1; NR>1 {print $2}' list1.assoc.logistic | sort -rn | head -n 100 > logistic_top_100.txt
+awk -v OFS='\t' 'NR==1; NR>1 {print $2}' list1.assoc.logistic | sort -rn | head -n 500 > logistic_top_500.txt
+awk -v OFS='\t' 'NR==1; NR>1 {print $2}' list1.assoc.logistic | sort -rn | head -n 1000 > logistic_top_1000.txt
+
+#################################################################################### script file end
+
+
+2021-02-11 
+
+Goal today is to use the snplist1 (standard logistic regression with PCA covars)
+to extract just the matrix that we can use for some machine learning.
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_1000.txt --recode 12 tab --out top_1000_matrix
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_500.txt --recode 12 tab --out top_500_matrix
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_100.txt --recode 12 tab --out top_100_matrix
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_10.txt --recode 12 tab --out top_10_matrix
+
+
+Now I just need to add the column headers to the .ped file
+
+I will need to make the logistic_top_x.txt file be a single row, tab-seperated with the following structure:
+FID\tIID\tSNP1\tSNP2\tSNP3...\tSNPx
+
+To achieve that, I use the command:
+cat logistic_top_x.txt | tr "\n" "\t" > top_x_header.txt
+This will replace all new lines with tabs
+
+Then open the file in nano and add the FID	IID	PatID	MatID	Sex	Phenotype
+and save the file.
+
+Then once I have that, simply cat the column header with the top_x_matrix file.
+
+cat top_10_header.txt top_10_matrix.ped > top_10_full_matrix.txt
+cat top_100_header.txt top_100_matrix.ped > top_100_full_matrix.txt
+cat top_500_header.txt top_500_matrix.ped > top_500_full_matrix.txt
+cat top_1000_header.txt top_1000_matrix.ped > top_1000_full_matrix.txt
+
+
+
+OK, cool. It works. I now have matrix files with all the SNPs that I want, along with the 0/1/2 data for SNP copy number.
+Subjects are the rows, SNPs are the columns.
+
+Ready for some actual ML! Well.... almost. I need my test data to also be in this format. Follow the same process as above but for the test .bed files. Use the exact same SNP lists however.
+
+We also want to extract the RegulomeDB scores for all of the "Suggestive" SNPs, and re-sort the list based on this score. Pull the top 10,100,500,1000 SNPs from that list.
+This will become "snplist2"
+
+
+2021-02-12
+
+Today I'll get my test files ready for ML:
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_1000.txt --recode 12 tab --out top_1000_test_matrix
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_500.txt --recode 12 tab --out top_500_test_matrix
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_100.txt --recode 12 tab --out top_100_test_matrix
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_10.txt --recode 12 tab --out top_10_test_matrix
+
+
+cat top_10_header.txt top_10_test_matrix.ped > top_10_test_matrix.txt
+cat top_100_header.txt top_100_test_matrix.ped > top_100_test_matrix.txt
+cat top_500_header.txt top_500_test_matrix.ped > top_500_test_matrix.txt
+cat top_1000_header.txt top_1000_test_matrix.ped > top_1000_test_matrix.txt
+
+
+Sweet, looks good. Now these files are ready for import into R. They are actually really small files so it won't be a problem to run lots of models on my local machine.
+
+When I made the train and test datasets, I saved the FID, IID, Phenotypes as a tab-seperated .txt file under:
+C:/Users/Nic/Dropbox (OMRF)/General documents/_Thesis/AAdata_QC/TRAIN_AAhist_PHENOTYPES.txt
+C:/Users/Nic/Dropbox (OMRF)/General documents/_Thesis/AAdata_QC/TEST_AAhist_PHENOTYPES.txt
+
+When I load the data into R, I can use these files for my labels.
+
+Ok, ran into a problem already. R can't read the "#" symbol for some reason. We need to replace it with "num" or something.
+
+try:
+sed 's/#/num/g' top_10_full_matrix.txt > top_10_full_matrix_clean.txt
+sed 's/#/num/g' top_100_full_matrix.txt > top_100_full_matrix_clean.txt
+sed 's/#/num/g' top_500_full_matrix.txt > top_500_full_matrix_clean.txt
+sed 's/#/num/g' top_1000_full_matrix.txt > top_1000_full_matrix_clean.txt
+
+sed 's/#/num/g' top_10_test_matrix.txt > top_10_test_matrix_clean.txt
+sed 's/#/num/g' top_100_test_matrix.txt > top_100_test_matrix_clean.txt
+sed 's/#/num/g' top_500_test_matrix.txt > top_500_test_matrix_clean.txt
+sed 's/#/num/g' top_1000_test_matrix.txt > top_1000_test_matrix_clean.txt
+
+
+
+
+2021-02-13
+
+Ok so it turns out I need the --recodeA option in plink to get the total allele counts. The files I made above had the full genotype for each person / SNP. (1/1, 1/2, 2/1, or 2/2) seperated by space
+I actually just want the cumulative count of how many minor alleles that person has for each SNP. (0, 1, or 2)
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_10.txt --recodeA -out top_10_matrix_add
+sed 's/#/num/g' top_10_matrix_add.raw > top_10_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_100.txt --recodeA -out top_100_matrix_add
+sed 's/#/num/g' top_100_matrix_add.raw > top_100_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_500.txt --recodeA -out top_500_matrix_add
+sed 's/#/num/g' top_500_matrix_add.raw > top_500_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_1000.txt --recodeA -out top_1000_matrix_add
+sed 's/#/num/g' top_1000_matrix_add.raw > top_1000_matrix_add_clean.raw
+
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_10.txt --recodeA -out top_10_test_matrix_add
+sed 's/#/num/g' top_10_test_matrix_add.raw > top_10_test_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_100.txt --recodeA -out top_100_test_matrix_add
+sed 's/#/num/g' top_100_test_matrix_add.raw > top_100_test_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_500.txt --recodeA -out top_500_test_matrix_add
+sed 's/#/num/g' top_500_test_matrix_add.raw > top_500_test_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1/logistic_top_1000.txt --recodeA -out top_1000_test_matrix_add
+sed 's/#/num/g' top_1000_test_matrix_add.raw > top_1000_test_matrix_add_clean.raw
+
+
+2021-02-22
+
+Today I ran the Fisher's exact test and the lasso regression on the data. 
+I also realized that my previous data was sorted alphabetically not by p-value........................................
+Gotta fix that!
+
+For Fisher's exact test rank:
+I updated the following line in the manhattan.R script to accept assoc.fisher file endings (rather than assoc.logistic)
+
+data=read.table(paste0(path,"/",datname,".assoc.fisher"),header=T,stringsAsFactors = F)
+
+
+###################### Start bash script
+#!/bin/bash -l
+
+#SBATCH --output "log_functional_script.txt"
+#SBATCH -A montgomery
+#SBATCH --partition serial
+#SBATCH -n 1
+#SBATCH -c 1
+#SBATCH --time 10:0:0
+#SBATCH --mem 100
+
+ml plink2
+ml R
+
+# plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --assoc fisher --out fisher
+
+awk 'NR==1; NR>1 {if($8<=.01 && $8!="NA") print $0}' fisher.assoc.fisher > fisher_clean.assoc.fisher
+
+Rscript --vanilla manhattan_fisher.R $PWD fisher_clean
+
+
+awk -v OFS='\t' '{print $0}' fisher.assoc.fisher | sort -k 8 -g | head -n 10 > fisher_top_10.txt
+awk -v OFS='\t' '{print $2}' fisher_top_10.txt > fisher_top_10_snps.txt
+
+awk -v OFS='\t' '{print $0}' fisher.assoc.fisher | sort -k 8 -g | head -n 100 > fisher_top_100.txt
+awk -v OFS='\t' '{print $2}' fisher_top_100.txt > fisher_top_100_snps.txt
+
+awk -v OFS='\t' '{print $0}' fisher.assoc.fisher | sort -k 8 -g | head -n 500 > fisher_top_500.txt
+awk -v OFS='\t' '{print $2}' fisher_top_500.txt > fisher_top_500_snps.txt
+
+awk -v OFS='\t' '{print $0}' fisher.assoc.fisher | sort -k 8 -g | head -n 1000 > fisher_top_1000.txt
+awk -v OFS='\t' '{print $2}' fisher_top_1000.txt > fisher_top_1000_snps.txt
+
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist3_fisher/fisher_top_10_snps.txt --recodeA -out top_10_matrix_add
+sed 's/#/num/g' top_10_matrix_add.raw > top_10_matrix_add_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist3_fisher/fisher_top_100_snps.txt --recodeA -out top_100_matrix_add
+sed 's/#/num/g' top_100_matrix_add.raw > top_100_matrix_add_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist3_fisher/fisher_top_500_snps.txt --recodeA -out top_500_matrix_add
+sed 's/#/num/g' top_500_matrix_add.raw > top_500_matrix_add_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist3_fisher/fisher_top_1000_snps.txt --recodeA -out top_1000_matrix_add
+sed 's/#/num/g' top_1000_matrix_add.raw > top_1000_matrix_add_clean.raw
+
+
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist3_fisher/fisher_top_10_snps.txt --recodeA -out top_10_test_matrix_add
+sed 's/#/num/g' top_10_test_matrix_add.raw > top_10_test_matrix_add_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist3_fisher/fisher_top_100_snps.txt --recodeA -out top_100_test_matrix_add
+sed 's/#/num/g' top_100_test_matrix_add.raw > top_100_test_matrix_add_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist3_fisher/fisher_top_500_snps.txt --recodeA -out top_500_test_matrix_add
+sed 's/#/num/g' top_500_test_matrix_add.raw > top_500_test_matrix_add_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist3_fisher/fisher_top_1000_snps.txt --recodeA -out top_1000_test_matrix_add
+sed 's/#/num/g' top_1000_test_matrix_add.raw > top_1000_test_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist3_fisher/fisher_top_10_snps.txt --recodeA -out top_10_test_matrix_add
+sed 's/#/num/g' top_10_test_matrix_add.raw > top_10_test_matrix_add_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist3_fisher/fisher_top_100_snps.txt --recodeA -out top_100_test_matrix_add
+sed 's/#/num/g' top_100_test_matrix_add.raw > top_100_test_matrix_add_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist3_fisher/fisher_top_500_snps.txt --recodeA -out top_500_test_matrix_add
+sed 's/#/num/g' top_500_test_matrix_add.raw > top_500_test_matrix_add_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist3_fisher/fisher_top_1000_snps.txt --recodeA -out top_1000_test_matrix_add
+sed 's/#/num/g' top_1000_test_matrix_add.raw > top_1000_test_matrix_add_clean.raw
+
+##################### End bash script
+
+
+
+
+2021-02-23
+Ok so the Fisher's and the lasso seemed to work. Not a lot of the lasso snps actually made it through (484 total SNPs with non-zero effect sizes), all of them with very tiny effect sizes.
+
+I noticed also in the Fisher's exact test rank, that at least for the top 10 snps (all of which are very close to each other physically on Chrm. 6) essentially have the same genotype
+per person. In other words, they have for example 1 copy of all 10 SNPs. This is because all of these SNPs are in a haplotype block. The model would probably benefit from compressing this
+down into a single value, so we get 1 column instead of 10 for example. If all 10 columns have the same info, we might as well simplify the model!
+
+This isn't a problem for the lasso, because this reduction was implicitly done during the alogorithm. We didn't "combine" but we eliminated SNPs with identical information, since their effects sizes
+went to 0.
+
+Experiment with creating haplotypes from the dataset. Just curious if it will help the model. Alternatively I can filter out SNPs that are too similar for each person prior to training models.
+
+mkdir haplo
+plink --bfile /s/cgm/Cejda/AAdata_QC/AA_train --hap-impute
+
+sbatch -A montgomery -J haplo --wrap "plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --blocks"
+
+
+
+
+Also I re-ran the Logistic regression and all the associated sorting and recoding stuff, since it was super messed up. I started a new directory:
+/s/cgm/Cejda/_thesis/snplist1_logistic/
+
+which contains the regression.sh file which looks like this:
+
+############################ Start bash script
+
+#!/bin/bash -l
+
+#SBATCH --output "log_functional_script.txt"
+#SBATCH -A montgomery
+#SBATCH --partition serial
+#SBATCH -n 1
+#SBATCH -c 1
+#SBATCH --time 10:0:0
+#SBATCH --mem 100
+
+ml plink2
+ml R
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --covar /s/cgm/Cejda/_thesis/AAdata_QC/AA_train_PCA.eigenvec --logistic hide-covar --out logistic
+
+awk 'NR==1; NR>1 {if($9<0.001 && $9!="NA") print $0}' logistic.assoc.logistic > logistic_clean.assoc.logistic
+
+Rscript --vanilla manhattan.R $PWD logistic_clean.assoc.logistic
+
+awk -v OFS='\t' '{print $0}' logistic.assoc.logistic | sort -k 9 -g | head -n 11 > logistic_top_10.txt
+awk -v OFS='\t' '{print $2}' logistic_top_10.txt > logistic_top_10_snps.txt
+awk -v OFS='\t' '{print $0}' logistic.assoc.logistic | sort -k 9 -g | head -n 101 > logistic_top_100.txt
+awk -v OFS='\t' '{print $2}' logistic_top_100.txt > logistic_top_100_snps.txt
+
+awk -v OFS='\t' '{print $0}' logistic.assoc.logistic | sort -k 9 -g | head -n 501 > logistic_top_500.txt
+awk -v OFS='\t' '{print $2}' logistic_top_500.txt > logistic_top_500_snps.txt
+
+awk -v OFS='\t' '{print $0}' logistic.assoc.logistic | sort -k 9 -g | head -n 1001 > logistic_top_1000.txt
+awk -v OFS='\t' '{print $2}' logistic_top_1000.txt > logistic_top_1000_snps.txt
+
+
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1_logistic/logistic_top_10_snps.txt --recodeA -out top_10_matrix_add
+sed 's/#/num/g' top_10_matrix_add.raw > top_10_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1_logistic/logistic_top_100_snps.txt --recodeA -out top_100_matrix_add
+sed 's/#/num/g' top_100_matrix_add.raw > top_100_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1_logistic/logistic_top_500_snps.txt --recodeA -out top_500_matrix_add
+sed 's/#/num/g' top_500_matrix_add.raw > top_500_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1_logistic/logistic_top_1000_snps.txt --recodeA -out top_1000_matrix_add
+sed 's/#/num/g' top_1000_matrix_add.raw > top_1000_matrix_add_clean.raw
+
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1_logistic/logistic_top_10_snps.txt --recodeA -out top_10_test_matrix_add
+sed 's/#/num/g' top_10_test_matrix_add.raw > top_10_test_matrix_add_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1_logistic/logistic_top_100_snps.txt --recodeA -out top_100_test_matrix_add
+sed 's/#/num/g' top_100_test_matrix_add.raw > top_100_test_matrix_add_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1_logistic/logistic_top_500_snps.txt --recodeA -out top_500_test_matrix_add
+sed 's/#/num/g' top_500_test_matrix_add.raw > top_500_test_matrix_add_clean.raw
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1_logistic/logistic_top_1000_snps.txt --recodeA -out top_1000_test_matrix_add
+sed 's/#/num/g' top_1000_test_matrix_add.raw > top_1000_test_matrix_add_clean.raw
+
+############################# End bash script
+
+
+
+Ok I really want to play with the haplotype blocks. I think there is a lot of promise there.
+It compressess the SNPs into larger chunks. We can do association tests on the haplotypes, just like SNPs.
+Pull out the most associated haplotypes, perform ML.
+Repeat but add functional scores (sum functional scores of each snp in the block? What to do about missing functional scores? Many questions)
+
+
+
+## Update, 03-28-2021
+I want to try the models with top 2000 and top 5000 SNPs, to try and leverage the advantages of ML a bit more (increased model complexity)
+I will extract the top 2000 and 5000 from the logistic regression.
+
+
+awk -v OFS='\t' '{print $0}' logistic.assoc.logistic | sort -k 9 -g | head -n 2001 > logistic_top_2000.txt
+awk -v OFS='\t' '{print $2}' logistic_top_2000.txt > logistic_top_2000_snps.txt
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1_logistic/logistic_top_2000_snps.txt --recodeA -out top_2000_matrix_add
+sed 's/#/num/g' top_2000_matrix_add.raw > top_2000_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1_logistic/logistic_top_2000_snps.txt --recodeA -out top_2000_test_matrix_add
+sed 's/#/num/g' top_2000_test_matrix_add.raw > top_2000_test_matrix_add_clean.raw
+
+
+
+
+awk -v OFS='\t' '{print $0}' logistic.assoc.logistic | sort -k 9 -g | head -n 5001 > logistic_top_5000.txt
+awk -v OFS='\t' '{print $2}' logistic_top_5000.txt > logistic_top_5000_snps.txt
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist1_logistic/logistic_top_5000_snps.txt --recodeA -out top_5000_matrix_add
+sed 's/#/num/g' top_5000_matrix_add.raw > top_5000_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist1_logistic/logistic_top_5000_snps.txt --recodeA -out top_5000_test_matrix_add
+sed 's/#/num/g' top_5000_test_matrix_add.raw > top_5000_test_matrix_add_clean.raw
+
+
+# I'm seriously considering removing SNPS in LD earlier (way way back at the original QC step) 
+# So that when I acutally run my models and extract the "top x" snps, I actually get the top x snps.
+# This is relevant so that I can better compare my functional score models with my generic models.
+# Right now, we are changing both the SNPs themselves AND the number of SNPs. Not good! Impossible to compare.
+
+# This command takes about two hours on the cluster: 
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_wgs_imp_strict_QC --indep 1000 5 10
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_wgs_imp_strict_QC --extract plink.prune.in --make-bed --out AA_wgs_imp_strict_LD_QC
+
+# 393,499 variants remain (2915 people remain)
+# So we REALLY trim this dataset down. A lot.
+# But now we don't have to worry about super correlated variables!
+# As long as the manhattan still looks OK I'm fine with it.
+
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_wgs_imp_strict_LD_QC --keep TRAIN_AAhist_IDs.txt --make-bed --out AA_train_LDprune
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_wgs_imp_strict_LD_QC --keep TEST_AAhist_IDs.txt --make-bed --out AA_test_LDprune
+
+Ok, that worked great. Got a new set of .bin,.bam, .fam files now called AA_train_LDprune. With exactly 2503 people remaining, 1414 controls and 1089 cases as I calculated above.
+
+We need to also calulate a new set of Principle Components to account for correlated ancestry on just the new dataset.
+
+sbatch -A montgomery --partition serial -n 1 -c 1 --mem 100 --wrap "plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train_LDprune --pca 4 --out AA_train_PCA_LDprune"
+
+Next run the logistic regression and compute the manhattan plot (simplified so it loads faster)
+Ran the following .sh file:
+######################## Begin script file
+#!/bin/bash -l
+
+#SBATCH --output "log_logistic_regression.txt"
+#SBATCH -A montgomery
+#SBATCH --partition serial
+#SBATCH -n 1
+#SBATCH -c 1
+#SBATCH --time 10:0:0
+#SBATCH --mem 1000
+
+ml slurm
+ml R
+ml plink2
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train_LDprune --covar /s/cgm/Cejda/_thesis/AAdata_QC/AA_train_PCA_LDprune.eigenvec --logistic hide-covar --out LDprune
+
+awk 'NR==1; NR>1 {if($9<0.001 && $9!="NA") print $0}' LDprune.assoc.logistic > LDprune_clean.assoc.logistic
+
+Rscript --vanilla manhattan.R $PWD LDprune_clean.assoc.logistic
+################################ End Script file
+
+Next step is to generate the top x lists.
+I want to VERIFY that they don't need the pearson's R2 cutoff anymore. They MIGHT by chance still be highly correlated even if they are far away from each other.
+
+Ran the following script file:
+################################## Start script file
+#!/bin/bash -l
+
+#SBATCH --output "log_extract_snps.txt"
+#SBATCH -A montgomery
+#SBATCH --partition serial
+#SBATCH --mem 1000
+
+# Top 10 SNPs
+awk -v OFS='\t' '{print $0}' LDprune.assoc.logistic | sort -k 9 -g | head -n 11 > LDprune_logistic_top_10.txt
+awk -v OFS='\t' '{print $2}' LDprune_logistic_top_10.txt > LDprune_logistic_top_10_snps.txt
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train_LDprune --extract /s/cgm/Cejda/_thesis/LDprune_logistic/LDprune_logistic_top_10_snps.txt --recodeA -out top_10_matrix_add
+sed 's/#/num/g' top_10_matrix_add.raw > top_10_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test_LDprune --extract /s/cgm/Cejda/_thesis/LDprune_logistic/LDprune_logistic_top_10_snps.txt --recodeA -out top_10_test_matrix_add
+sed 's/#/num/g' top_10_test_matrix_add.raw > top_10_test_matrix_add_clean.raw
+
+# Top 100 SNPs
+awk -v OFS='\t' '{print $0}' LDprune.assoc.logistic | sort -k 9 -g | head -n 101 > LDprune_logistic_top_100.txt
+awk -v OFS='\t' '{print $2}' LDprune_logistic_top_100.txt > LDprune_logistic_top_100_snps.txt
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train_LDprune --extract /s/cgm/Cejda/_thesis/LDprune_logistic/LDprune_logistic_top_100_snps.txt --recodeA -out top_100_matrix_add
+sed 's/#/num/g' top_100_matrix_add.raw > top_100_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test_LDprune --extract /s/cgm/Cejda/_thesis/LDprune_logistic/LDprune_logistic_top_100_snps.txt --recodeA -out top_100_test_matrix_add
+sed 's/#/num/g' top_100_test_matrix_add.raw > top_100_test_matrix_add_clean.raw
+
+# Top 500 SNPs
+awk -v OFS='\t' '{print $0}' LDprune.assoc.logistic | sort -k 9 -g | head -n 501 > LDprune_logistic_top_500.txt
+awk -v OFS='\t' '{print $2}' LDprune_logistic_top_500.txt > LDprune_logistic_top_500_snps.txt
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train_LDprune --extract /s/cgm/Cejda/_thesis/LDprune_logistic/LDprune_logistic_top_500_snps.txt --recodeA -out top_500_matrix_add
+sed 's/#/num/g' top_500_matrix_add.raw > top_500_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test_LDprune --extract /s/cgm/Cejda/_thesis/LDprune_logistic/LDprune_logistic_top_500_snps.txt --recodeA -out top_500_test_matrix_add
+sed 's/#/num/g' top_500_test_matrix_add.raw > top_500_test_matrix_add_clean.raw
+
+# Top 1000 SNPs
+awk -v OFS='\t' '{print $0}' LDprune.assoc.logistic | sort -k 9 -g | head -n 1001 > LDprune_logistic_top_1000.txt
+awk -v OFS='\t' '{print $2}' LDprune_logistic_top_1000.txt > LDprune_logistic_top_1000_snps.txt
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train_LDprune --extract /s/cgm/Cejda/_thesis/LDprune_logistic/LDprune_logistic_top_1000_snps.txt --recodeA -out top_1000_matrix_add
+sed 's/#/num/g' top_1000_matrix_add.raw > top_1000_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test_LDprune --extract /s/cgm/Cejda/_thesis/LDprune_logistic/LDprune_logistic_top_1000_snps.txt --recodeA -out top_1000_test_matrix_add
+sed 's/#/num/g' top_1000_test_matrix_add.raw > top_1000_test_matrix_add_clean.raw
+
+# Top 2000 SNPs
+awk -v OFS='\t' '{print $0}' LDprune.assoc.logistic | sort -k 9 -g | head -n 2001 > LDprune_logistic_top_2000.txt
+awk -v OFS='\t' '{print $2}' LDprune_logistic_top_2000.txt > LDprune_logistic_top_2000_snps.txt
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train_LDprune --extract /s/cgm/Cejda/_thesis/LDprune_logistic/LDprune_logistic_top_2000_snps.txt --recodeA -out top_2000_matrix_add
+sed 's/#/num/g' top_2000_matrix_add.raw > top_2000_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test_LDprune --extract /s/cgm/Cejda/_thesis/LDprune_logistic/LDprune_logistic_top_2000_snps.txt --recodeA -out top_2000_test_matrix_add
+sed 's/#/num/g' top_2000_test_matrix_add.raw > top_2000_test_matrix_add_clean.raw
+
+############################ End script file.
+
+# Move to R to do the actual modeling!
+# Consider re-runnin the LASSO model as well.
+
+
+# LASSO SNP extractions
+cd /s/cgm/Cejda/_thesis/snplist2_lasso
+
+awk -v OFS='\t' '{if(NR>1) print $2}' lasso.lasso > top_484_lasso_snps.txt
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_train --extract /s/cgm/Cejda/_thesis/snplist2_lasso/top_484_lasso_snps.txt --recodeA -out lasso_matrix_add
+sed 's/#/num/g' lasso_matrix_add.raw > lasso_matrix_add_clean.raw
+
+plink --bfile /s/cgm/Cejda/_thesis/AAdata_QC/AA_test --extract /s/cgm/Cejda/_thesis/snplist2_lasso/top_484_lasso_snps.txt --recodeA -out lasso_test_matrix_add
+sed 's/#/num/g' lasso_test_matrix_add.raw > lasso_test_matrix_add_clean.raw
+
+Move to R for modeling. Not doing all the little subsets, just the whole list at once. Still clean up > 0.9 correlated variables. Keep the one with the HIGHER absolute value effect size.
+
