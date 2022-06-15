@@ -1,13 +1,11 @@
 ## Predicting sarcoidosis disease incidence using single nucleotide polymorphisms and supervised machine learning
 
 ### Nicholas Cejda
+#### 26-Apr-2021
 
-#### April 27, 2021
+This is the repository for all code used in the thesis project "Predicting sarcoidosis disease incidence using single nucleotide polymorphisms and supervised machine learning" by Nicholas Cejda, 
 
-
-This is the repository for all code used in the thesis project "Predicting sarcoidosis disease incidence using single nucleotide polymorphisms and supervised machine learning" by Nicholas Cejda.
-
-### Full Text
+### Full Manuscript Text
 
 https://hdl.handle.net/11244/329534
 
